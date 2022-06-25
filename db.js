@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { MONGO_KEY } = process.env;
+const MONGO_KEY = process.env.MONGO_KEY;
 
 mongoose.connect(MONGO_KEY, (error, client) => {
     if (error) {

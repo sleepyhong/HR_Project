@@ -40,7 +40,7 @@ const userSchema = new Schema({
     },
     phoneNumber: {
         cell: String,
-        work: STring
+        work: String
     },
     employement: {
         title: String,
