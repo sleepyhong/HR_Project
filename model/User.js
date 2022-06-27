@@ -21,9 +21,9 @@ const userSchema = new Schema({
         enum: ['hiring_manager', 'employee'],
         required: true
     },
-    firstname: String,
-    lastname: String,
-    middlename: String,
+    firstName: String,
+    lastName: String,
+    middleName: String,
     preferredName: String,
     ssn: String,
     dateOfBirth: Date,
@@ -42,47 +42,40 @@ const userSchema = new Schema({
         cell: String,
         work: String
     },
-    employement: {
+    employment: {
         title: String,
         startDate: Date,
         endDate: Date
     },
-    driverLiscense: {
+    driverLicense: {
         number: Number,
         expirationDate: Date,
         document: []
     },
     referenceContact: {
-        firstname: String,
-        lastname: String,
-        middlename: String,
+        firstName: String,
+        lastName: String,
+        middleName: String,
         phone: String,
         email: String,
-        realtionship: String
+        relationship: String
     },
     emergencyContact: {
-        firstname: String,
-        lastname: String,
-        middlename: String,
+        firstName: String,
+        lastName: String,
+        middleName: String,
         phone: String,
         email: String,
-        realtionship: String
+        relationship: String
     },
-    documents: [{
-
-    }],
     visa: {
         type: String,
         enum: ['Citizen', 'Green Card', 'OPT']
     },
-    car: String
-    
-
-    // normal / hr
-    // personal info
+    isDrivingCar: Boolean,
+    documents: [{
+    }],
 });
-
-// house?
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
