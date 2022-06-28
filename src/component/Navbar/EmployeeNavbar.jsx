@@ -14,8 +14,10 @@ export default function EmployeeNavbar() {
                 <Link to="/information">Personal Information</Link>
                 <Link to="/visa">Visa Status Management</Link>
                 <Link to="/housing">Housing</Link>
-                <Link to="/login">Login</Link>
-                <Link to="/logout">Logout</Link>
+                {sessionStorage.getItem('user') ?
+                    <Link to="/logout">Logout</Link> :
+                    <Link to="/login">Login</Link>
+                }
             </nav>
             <Routes>
                 <Route path="/">

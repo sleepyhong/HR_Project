@@ -16,13 +16,15 @@ export default function HRNavbar() {
                 <Link to="/hrvisa">Visa Status Management</Link>
                 <Link to="/hiringmanagement"> Hiring Management</Link>
                 <Link to="/housingmanagement">Housing Management</Link>
-                <Link to="/login">Login</Link>
-                <Link to="/logout">Logout</Link>
+                {sessionStorage.getItem('user') ?
+                    <Link to="/logout">Logout</Link> :
+                    <Link to="/login">Login</Link>
+                }
             </nav>
             <Routes>
                 <Route path="/">
                     <Route index element={<Home />} />
-                    <Route path="employee" element={<EmployeeProfiles/>} />
+                    <Route path="employee" element={<EmployeeProfiles />} />
                     <Route path="hrvisa" element={<HRVisaStatusManagement />} />
                     <Route path="hiringmanagement" element={<HiringManagement />} />
                     <Route path="housingmanagement" element={<HousingManagement />} />
