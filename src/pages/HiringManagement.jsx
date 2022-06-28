@@ -1,5 +1,5 @@
 const HiringManagement = () => {
-    return <h1>HiringManagement</h1>;
+    return <h1>Hiring Management</h1>;
 };
 
 export default HiringManagement;

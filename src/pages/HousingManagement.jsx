@@ -1,5 +1,5 @@
-const HiringManagement = () => {
-    return <h1>HiringManagement</h1>;
+const Housing = () => {
+    return <h1>Housing Management</h1>;
 };
 
-export default HiringManagement;
+export default Housing;
