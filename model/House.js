@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const housechema = new Schema({
+const houseSchema = new Schema({
     address: {
         type: String,
         required: true
     },
     landlord: {
-        fullname: String,
+        fullName: String,
         phoneNumber: String,
         email: String
     },

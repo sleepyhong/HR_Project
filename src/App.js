@@ -1,38 +1,36 @@
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import Home from './pages/Home';
-import PersonalInformation from "./pages/PersonalInformation";
-import VisaStatusManagement from "./pages/VisaStatusManagement";
-import Housing from "./pages/Housing";
+import { Route, Routes } from "react-router-dom";
+import { Container } from 'react-bootstrap';
+
+// Components
+import Navbar from './component/Navbar/Navbar';
 import Login from "./component/Login/Login";
+
+// Pages
+import HRAdminHome from './pages/HRAdminHome';
+import EmployeeProfiles from "./pages/EmployeeProfiles";
+import VisaStatusManagement from "./pages/VisaStatusManagement";
+import HousingManagement from "./pages/HousingManagement";
+import HiringManagement from './pages/HiringManagement';
+
 import Logout from "./pages/Logout";
-import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/information">Personal Information</Link>
-          <Link to="/visa">Visa Status Management</Link>
-          <Link to="/housing">Housing</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/logout">Logout</Link>
-        </nav>
-        <Routes>
-          <Route path="/">
-            <Route index element={<Home />} />
-            <Route path="information" element={<PersonalInformation />} />
-            <Route path="visa" element={<VisaStatusManagement />} />
-            <Route path="housing" element={<Housing />} />
-            <Route path="login" element={<Login />} />
-            <Route path="logout" element={<Logout />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
-}
+    <Container>
+      <Navbar />
+      <Routes>
+        <Route path="/">
+        <Route index element={<HRAdminHome />} />
+        <Route path="information" element={<EmployeeProfiles />} />
+        <Route path="visa" element={<VisaStatusManagement />} />
+        <Route path="housing" element={<HousingManagement />} />
+        <Route path="hiring" element={<HiringManagement />} />
+        <Route path="login" element={<Login />} />
+        <Route path="logout" element={<Logout />} />
+        </Route>
+      </Routes>
+    </Container>
+  )
+};
 
 export default App;
