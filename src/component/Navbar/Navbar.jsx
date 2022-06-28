@@ -6,8 +6,15 @@ import store from "../../redux/store";
 import selectorUserType from '../../redux/selectors';
 
 export default function Navbar() {
-    const employeeType = useSelector(selectorUserType);
-    const [employeeView, setEmployeeView] = useState(employeeType === "employee");
+    const [employeeView, setEmployeeView] = useState(store.getState().type === "employee");
+
+    store.subscribe(() => {
+        changeEmployeeView();
+    });
+
+    const changeEmployeeView = () => {
+        setEmployeeView(store.getState().type === "employee");
+    }
 
     return (
         <>

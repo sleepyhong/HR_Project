@@ -6,10 +6,7 @@ export default function userReducer(preState = {}, action) {
 
     switch (type) {
         case "SET": {
-            const newState = Object.assign({}, preState);
-            newState['type'] = data;
-
-            return newState;
+            return data;
         }
         default:
             return preState;

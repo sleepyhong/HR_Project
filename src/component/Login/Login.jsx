@@ -22,8 +22,9 @@ export default class Login extends Component {
             .post("/login", inputs)
             .then((result) => {
                 if (result.data.success) {
-                    sessionStorage.setItem('userId', result.data.userId);
-                    setUser(result.data.type);
+                    sessionStorage.setItem('user', result.data.user);
+                    console.log(result.data.user)
+                    setUser(result.data.user);
 
                     //redirect to application page or personal info page?
                 }
