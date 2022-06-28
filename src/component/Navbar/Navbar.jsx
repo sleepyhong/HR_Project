@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from 'react-redux';
-import UserNavbar from "./UserNavbar";
+import EmployeeNavbar from "./EmployeeNavbar";
 import HRNavbar from "./HRNavbar";
 import store from "../../redux/store";
 import selectorUserType from '../../redux/selectors';
@@ -18,7 +18,7 @@ export default function Navbar() {
 
     return (
         <>
-            {employeeView ? <UserNavbar /> : <HRNavbar />}
+            {employeeView ? <EmployeeNavbar /> : <HRNavbar />}
         </>
     );
 }

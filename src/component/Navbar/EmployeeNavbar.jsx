@@ -6,7 +6,7 @@ import Housing from "../../pages/Housing";
 import Login from "../../component/Login/Login";
 import Logout from "../../pages/Logout";
 
-export default function UserNavbar() {
+export default function EmployeeNavbar() {
     return (
         <>
             <nav>
