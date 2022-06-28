@@ -21,21 +21,16 @@ export default class Login extends Component {
         axios
             .post("/login", inputs)
             .then((result) => {
-                if (result.data.success) {
-                    sessionStorage.setItem('user', result.data.user);
-                    console.log(result.data.user)
-                    setUser(result.data.user);
+                sessionStorage.setItem('user', result.data.user);
+                console.log(result.data.user)
+                setUser(result.data.user);
 
-                    //redirect to application page or personal info page?
-                }
-                else {
-                    this.setState({
-                        error: result.data.error
-                    });
-                }
+                //redirect to application page or personal info page?
             })
             .catch((error) => {
-                console.log(error);
+                this.setState({
+                    error: error.response.data.msg
+                });
             });
     }
 

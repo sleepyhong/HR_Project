@@ -21,23 +21,10 @@ export default class Register extends Component {
 
         axios
             .post("/register", inputs)
-            .then((result) => {
-                console.log(result.status)
-                // if (result.data.success) {
-                //     sessionStorage.setItem('user', result.data.user);
-                //     console.log(result.data.user)
-                //     setUser(result.data.user);
-
-                //     //redirect to application page or personal info page?
-                // }
-                // else {
-                //     this.setState({
-                //         error: result.data.msg
-                //     });
-                // }
-            })
             .catch((error) => {
-                console.log(error);
+                this.setState({
+                    error: error.response.data.msg
+                });
             });
     }
 
