@@ -18,10 +18,10 @@ export default function EmployeeNavbar() {
             </Nav.Item>
             {sessionStorage.getItem('user') ?
                 <Nav.Item>
-                    <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                    <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
                 </Nav.Item> :
                 <Nav.Item>
-                    <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
+                    <Nav.Link as={Link} to="/login">Login</Nav.Link>
                 </Nav.Item>
             }
         </Nav>

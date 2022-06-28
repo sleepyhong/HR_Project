@@ -19,6 +19,7 @@ const userSchema = new Schema({
     type: {
         type: String,
         enum: ['hiring_manager', 'employee'],
+        default: "employee",
         required: true
     },
     firstName: String,
