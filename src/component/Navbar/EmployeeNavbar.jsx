@@ -1,34 +1,29 @@
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import Home from '../../pages/Home';
-import PersonalInformation from "../../pages/PersonalInformation";
-import VisaStatusManagement from "../../pages/VisaStatusManagement";
-import Housing from "../../pages/Housing";
-import Login from "../../component/Login/Login";
-import Logout from "../../pages/Logout";
+import { Link } from "react-router-dom";
+import { Nav } from 'react-bootstrap';
 
 export default function EmployeeNavbar() {
     return (
-        <>
-            <nav>
-                <Link to="/">Home</Link>
-                <Link to="/information">Personal Information</Link>
-                <Link to="/visa">Visa Status Management</Link>
-                <Link to="/housing">Housing</Link>
-                {sessionStorage.getItem('user') ?
-                    <Link to="/logout">Logout</Link> :
-                    <Link to="/login">Login</Link>
-                }
-            </nav>
-            <Routes>
-                <Route path="/">
-                    <Route index element={<Home />} />
-                    <Route path="information" element={<PersonalInformation />} />
-                    <Route path="visa" element={<VisaStatusManagement />} />
-                    <Route path="housing" element={<Housing />} />
-                    <Route path="login" element={<Login />} />
-                    <Route path="logout" element={<Logout />} />
-                </Route>
-            </Routes>
-        </>
+        <Nav fill variant="tabs" defaultActiveKey="/">
+            <Nav.Item>
+                <Nav.Link as={Link} to="/">HR Home</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+                <Nav.Link as={Link} to="/information">Personal Information</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+                <Nav.Link as={Link} to="/visa">Visa Status Management</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+                <Nav.Link as={Link} to="/housing">Housing</Nav.Link>
+            </Nav.Item>
+            {sessionStorage.getItem('user') ?
+                <Nav.Item>
+                    <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                </Nav.Item> :
+                <Nav.Item>
+                    <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
+                </Nav.Item>
+            }
+        </Nav>
     );
 }
