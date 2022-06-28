@@ -31,22 +31,22 @@ export default class Register extends Component {
     render() {
         return (
             <>
-                <h1>Register</h1>
+                <h3>Register</h3>
                 <form onSubmit={this.submitForm}>
-                    <div>
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" placeholder="Enter your username" required />
+                    <div class="form-outline mb-4">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Enter your username" required />
                     </div>
-                    <div>
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Enter your email" required />
+                    <div class="form-outline mb-4">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required />
                     </div>
-                    <div>
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" placeholder="Enter your password" required />
+                    <div class="form-outline mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" required />
                     </div>
                     <p>{this.state.error}</p>
-                    <button type="submit">Register</button>
+                    <button type="submit" class="btn btn-primary btn-block mb-4">Register</button>
                 </form>
             </>
         );
