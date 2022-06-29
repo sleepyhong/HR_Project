@@ -23,7 +23,7 @@ function App() {
           <Route path="hiring" element={<HiringManagement />} />
           <Route path="login" element={<Login />} />
           <Route path="logout" element={<Logout />} />
-          <Route path="register" element={<Register />} />
+          <Route path="register/:token" element={<Register />} />
         </Route>
       </Routes>
     </div>

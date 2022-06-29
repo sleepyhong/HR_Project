@@ -28,23 +28,8 @@ router.post('/login', async function (req, res) {
     }
 });
 
-router.post('/register/:token', async (req, res) => {
-    const { tokenString } = req.params;
+router.post('/register', async (req, res) => {
     const { username, email, password } = req.body
-
-    const token = await Token.findOne({ token: tokenString });
-    if (!token) {
-        return res
-            .status(400)
-            .json({ msg: 'Invalid Token'});
-    }
-
-    if ((token.dateCreated.getTime() - new Date().getTime()) / (1000 * 60 * 60) > 3) {
-        await Token.findOneAndDelete({ token: tokenString });
-        return res
-            .status(400)
-            .json({ msg: 'Token Expired. Contact your hiring manager for more information'})
-    }
 
     if (password.length < 8) {
         return res
