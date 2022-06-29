@@ -39,8 +39,8 @@ router.post('/create-register-token', async (req, res) => {
             port: 587,
             secure: false,
             auth: {
-                user: "seoungwoo0407@outlook.com",
-                pass: "Sm10230420?"
+                user: "",
+                pass: ""
             },
             tls: {
                 rejectUnauthorized: false
