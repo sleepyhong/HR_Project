@@ -39,8 +39,8 @@ router.post('/create-register-token', async (req, res) => {
             port: 587,
             secure: false,
             auth: {
-                user: "",
-                pass: ""
+                user: process.env.EMAIL,
+                pass: process.env.PASSWORD
             },
             tls: {
                 rejectUnauthorized: false
@@ -50,7 +50,7 @@ router.post('/create-register-token', async (req, res) => {
             from: '"HR Project" <seoungwoo0407@outlook.com>',
             to: userEmail,
             subject: "Link to Register Page",
-            text: `Here is the link to the register page!\n http://localhost:3001/register/${tokenString}`
+            text: `Here is the link to the register page!\nhttp://localhost:3001/register/${tokenString}`
         });
 
 
