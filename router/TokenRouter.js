@@ -47,7 +47,7 @@ router.post('/create-register-token', async (req, res) => {
             }
         });
         const info = await transporter.sendMail({
-            from: '"HR Project" <seoungwoo0407@outlook.com>',
+            from: `"HR Project" <${process.env.EMAIL}>`,
             to: userEmail,
             subject: "Link to Register Page",
             text: `Here is the link to the register page!\nhttp://localhost:3001/register/${tokenString}`
