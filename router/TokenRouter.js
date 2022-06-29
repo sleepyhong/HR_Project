@@ -20,7 +20,9 @@ router.post('/check-token', async (req, res) => {
             .json({ msg: 'Token Expired. Contact your hiring manager for more information' });
     }
 
-    return res.status(200);
+    return res
+        .status(200)
+        .json({ msg: 'Valid Token' });
 });
 
 router.post('/create-register-token', async (req, res) => {

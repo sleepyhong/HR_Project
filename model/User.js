@@ -78,7 +78,8 @@ const userSchema = new Schema({
     }],
     applicationStatus: {
         type: String,
-        enum: ['Pending', 'Rejected', 'Never_Submittied']
+        enum: ['Pending', 'Approved', 'Rejected', 'Never_Submittied'],
+        default: 'Never_Submitted'
     }
 });
 

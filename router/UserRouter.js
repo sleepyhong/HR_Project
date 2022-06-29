@@ -61,4 +61,8 @@ router.post('/register', async (req, res) => {
     })
 });
 
+router.post('/information', (req, res) => {
+    
+});
+
 module.exports = router;
