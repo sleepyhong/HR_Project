@@ -76,6 +76,10 @@ const userSchema = new Schema({
     isDrivingCar: Boolean,
     documents: [{
     }],
+    applicationStatus: {
+        type: String,
+        enum: ['Pending', 'Rejected', 'Never_Submittied']
+    }
 });
 
 const User = mongoose.model("User", userSchema);

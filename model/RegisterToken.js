@@ -10,6 +10,10 @@ const registerTokenSchema = new Schema({
     dateCreated: {
         type: Date,
         requried: true
+    },
+    userEmail: {
+        type: String,
+        required: true
     }
 });
 

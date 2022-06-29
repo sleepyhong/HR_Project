@@ -1,20 +1,48 @@
 const router = require("express").Router();
+const nodemailer = require("nodemailer");
+
 const Token = require("../model/RegisterToken");
 
-router.get('/create-register-token', async (req, res) => {
+router.post('/create-register-token', async (req, res) => {
     try {
+        const { userEmail } = req.body;
         const tokenString = Math.random().toString(36).substring(2);
         const token = await Token.create({
             token: tokenString,
-            dateCreated: new Date()
+            dateCreated: new Date(),
+            userEmail: userEmail
         });
-        res.status(400).json(token);
+
+        const testAccount = await nodemailer.createTestAccount();
+        const transporter = nodemailer.createTransport({
+            host: "smtp.ethereal.email",
+            port: 587,
+            secure: false,
+            auth: {
+                user: testAccount.user,
+                pass: testAccount.pass
+            }
+        });
+        const info = await transporter.sendMail({
+            from: '"HR Project" <seoungwoo0407@gmail.com>',
+            to: userEmail,
+            subject: "Link to Register Page",
+            text: `
+                Here is the link to the register page!
+                http://localhost:3001/register/${tokenString}
+            `,
+            html: `
+                Here is the link to the register page!
+                http://localhost:3001/register/${tokenString}
+            `,
+        });
+
+
+        res.status(200).json(token);
     }
     catch (error) {
-        res.status(200).json(error.toString());
+        res.status(400).json(error.toString());
     }
-
-    res.status(400).json(Math.random().toString(36).substring(2));
 });
 
 
