@@ -15,26 +15,25 @@ router.post('/create-register-token', async (req, res) => {
 
         const testAccount = await nodemailer.createTestAccount();
         const transporter = nodemailer.createTransport({
-            host: "smtp.ethereal.email",
+            host: 'smtp.outlook.com',
             port: 587,
             secure: false,
             auth: {
-                user: testAccount.user,
-                pass: testAccount.pass
+                user: "seoungwoo0407@outlook.com",
+                pass: "Sm10230420?"
+            },
+            tls:{
+                rejectUnauthorized:false
             }
         });
         const info = await transporter.sendMail({
-            from: '"HR Project" <seoungwoo0407@gmail.com>',
+            from: '"HR Project" <seoungwoo0407@outlook.com>',
             to: userEmail,
             subject: "Link to Register Page",
             text: `
                 Here is the link to the register page!
                 http://localhost:3001/register/${tokenString}
-            `,
-            html: `
-                Here is the link to the register page!
-                http://localhost:3001/register/${tokenString}
-            `,
+            `
         });
 
 
