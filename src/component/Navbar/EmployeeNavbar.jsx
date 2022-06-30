@@ -8,6 +8,9 @@ export default function EmployeeNavbar() {
                 <Nav.Link as={Link} to="/">Home</Nav.Link>
             </Nav.Item>
             <Nav.Item>
+                <Nav.Link as={Link} to="/application">Onboarding Application</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
                 <Nav.Link as={Link} to="/information">Personal Information</Nav.Link>
             </Nav.Item>
             <Nav.Item>

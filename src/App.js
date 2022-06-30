@@ -8,6 +8,7 @@ import HiringManagement from './pages/HiringManagement';
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Register from "./pages/Register";
+import OnboardingApplication from "./pages/OnboardingApplication";
 import './App.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/">
           <Route index element={<HRAdminHome />} />
+          <Route path="application" element={<OnboardingApplication />}/>
           <Route path="information" element={<EmployeeProfiles />} />
           <Route path="visa" element={<VisaStatusManagement />} />
           <Route path="housing" element={<HousingManagement />} />

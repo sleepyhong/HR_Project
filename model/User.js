@@ -26,12 +26,6 @@ const userSchema = new Schema({
     lastName: String,
     middleName: String,
     preferredName: String,
-    ssn: String,
-    dateOfBirth: Date,
-    gender: {
-        type: String,
-        enum: ['male', 'female']
-    },
     address: {
         building: String,
         street: String,
@@ -43,6 +37,21 @@ const userSchema = new Schema({
         cell: String,
         work: String
     },
+    car: {
+        brand: String,
+        model: String,
+        color: String
+    },
+    ssn: String,
+    dateOfBirth: Date,
+    gender: {
+        type: String,
+        enum: ['male', 'female', 'I do not wish to answer']
+    },
+    visa: {
+        type: String,
+        enum: ['Citizen', 'Green_Card', 'H1-B', 'L2', 'F1(CPT/OPT)', 'H4', 'Other']
+    },
     employment: {
         title: String,
         startDate: Date,
@@ -50,8 +59,7 @@ const userSchema = new Schema({
     },
     driverLicense: {
         number: Number,
-        expirationDate: Date,
-        document: []
+        expirationDate: Date
     },
     referenceContact: {
         firstName: String,
@@ -69,16 +77,10 @@ const userSchema = new Schema({
         email: String,
         relationship: String
     },
-    visa: {
-        type: String,
-        enum: ['Citizen', 'Green Card', 'OPT']
-    },
     isDrivingCar: Boolean,
-    documents: [{
-    }],
     applicationStatus: {
         type: String,
-        enum: ['Pending', 'Approved', 'Rejected', 'Never_Submittied'],
+        enum: ['Pending', 'Approved', 'Rejected', 'Never_Submitted'],
         default: 'Never_Submitted'
     }
 });

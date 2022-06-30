@@ -23,8 +23,7 @@ export default class Login extends Component {
         axios
             .post("/login", inputs)
             .then((result) => {
-                sessionStorage.setItem('user', result.data.user);
-                console.log(result.data.user)
+                sessionStorage.setItem('user', JSON.stringify(result.data.user));
                 setUser(result.data.user);
 
                 //redirect to application page or personal info page?

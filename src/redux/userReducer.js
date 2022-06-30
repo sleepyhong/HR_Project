@@ -5,9 +5,12 @@ export default function userReducer(preState = {}, action) {
     Object.freeze(preState);
 
     switch (type) {
-        case "SET": {
-            return data;
-        }
+        case "SET":
+            const newState = { ...preState };
+            for (let key in data) {
+                newState[key] = data[key];
+            }
+            return newState;
         default:
             return preState;
     }
