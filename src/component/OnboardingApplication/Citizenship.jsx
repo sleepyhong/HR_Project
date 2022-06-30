@@ -43,11 +43,11 @@ export default function Citizenship() {
             <Accordion.Header>Citizenship</Accordion.Header>
             <Accordion.Body>
                 <label for="citizenship" class="form-label">Are you a citizen or permanent resident of the U.S?</label>
-                <select id="citizenship" name="citizenship" class="form-control" onChange={changeVisaStatus} required value={store.getState().citizenship} disabled={store.getState().applicationStatus === "Pending"}>
+                <select id="citizenship" name="citizenship" class="form-control" onChange={changeVisaStatus} required value={store.getState().citizenship} disabled={store.getState().applicationStatus === "Pending" || store.getState().applicationStatus === "Approved"}>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
-                <select id="visa" name="visa" class="form-control" onChange={changeVisaType} required value={store.getState().visa} disabled={store.getState().applicationStatus === "Pending"} >
+                <select id="visa" name="visa" class="form-control" onChange={changeVisaType} required value={store.getState().visa} disabled={store.getState().applicationStatus === "Pending" || store.getState().applicationStatus === "Approved"} >
                     {userInfo.visa ? (
                         <>
                             <option value="Citizen">Citizen</option>
@@ -67,7 +67,7 @@ export default function Citizenship() {
                     userInfo.f1Selected ? (
                         <>
                             <label for="octReceipt" class="form-label">OCT Receipt</label>
-                            <input type="file" id="octReceipt" name="octReceipt" class="form-control" disabled={store.getState().applicationStatus === "Pending"} />
+                            <input type="file" id="octReceipt" name="octReceipt" class="form-control" disabled={store.getState().applicationStatus === "Pending" || store.getState().applicationStatus === "Approved"} />
                         </>
                     ) :
                         <>
@@ -77,16 +77,16 @@ export default function Citizenship() {
                     userInfo.otherSelected ? (
                         <>
                             <label for="visaTitle" class="form-label">Visa Title</label>
-                            <input type="text" id="visaTitle" name="visaTitle" class="form-control" value={store.getState().visa} disabled={store.getState().applicationStatus === "Pending"} />
+                            <input type="text" id="visaTitle" name="visaTitle" class="form-control" value={store.getState().visa} disabled={store.getState().applicationStatus === "Pending" || store.getState().applicationStatus === "Approved"} />
                         </>
                     ) :
                         <>
                         </>
                 }
                 <label for="startDate" class="form-label">Start Date</label>
-                <input type="date" id="startDate" name="startDate" class="form-control" value={store.getState().employment.startDate ? store.getState().employment.startDate.substr(0, 10) : null} disabled={store.getState().applicationStatus === "Pending"} />
+                <input type="date" id="startDate" name="startDate" class="form-control" value={store.getState().employment.startDate ? store.getState().employment.startDate.substr(0, 10) : null} disabled={store.getState().applicationStatus === "Pending" || store.getState().applicationStatus === "Approved"} />
                 <label for="endDate" class="form-label">End Date</label>
-                <input type="date" id="endDate" name="endDate" class="form-control" value={store.getState().employment.endDate ? store.getState().employment.endDate.substr(0, 10) : null} disabled={store.getState().applicationStatus === "Pending"} />
+                <input type="date" id="endDate" name="endDate" class="form-control" value={store.getState().employment.endDate ? store.getState().employment.endDate.substr(0, 10) : null} disabled={store.getState().applicationStatus === "Pending" || store.getState().applicationStatus === "Approved"} />
             </Accordion.Body>
         </Accordion.Item>
     )

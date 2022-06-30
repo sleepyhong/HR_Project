@@ -108,6 +108,19 @@ export default function Navbar() {
                     <p>Reason: {userInfo.rejectedReason}</p>
                 </>
             );
+        case "Approved":
+            return (
+                <>
+                    <h3>Your application has been approved.</h3>
+                    <Accordion defaultActiveKey="0" alwaysOpen>
+                        <form>
+                            <ProfilePicture />
+                            <DriverLicense />
+                            <Citizenship />
+                        </form>
+                    </Accordion>
+                </>
+            );
         default:
             break;
     }
