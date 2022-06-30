@@ -82,9 +82,9 @@ export default function Navbar() {
         case "Pending":
             return (
                 <>
-                    <h3>Please wait for HR to review your application</h3>
+                    <h3>Please wait for HR to review your application.</h3>
                     <Accordion defaultActiveKey="0" alwaysOpen>
-                        <form action="/application" method="POST" onSubmit={submitApplication}>
+                        <form>
                             <Name />
                             <ProfilePicture />
                             <Address />
@@ -96,17 +96,18 @@ export default function Navbar() {
                             <DriverLicense />
                             <Reference />
                             <Emergency />
-                            {
-                                store.getState().applicationStatus === "Pending" ?
-                                    <>
-                                    </> :
-                                    <button type="submit">Submit</button>
-                            }
                         </form>
                         <p>{userInfo.msg}</p>
                     </Accordion>
                 </>
-            )
+            );
+        case "Rejected":
+            return (
+                <>
+                    <h3>Your application has been rejected.</h3>
+                    <p>Reason: {userInfo.rejectedReason}</p>
+                </>
+            );
         default:
             break;
     }

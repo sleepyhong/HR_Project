@@ -27,20 +27,50 @@ const userSchema = new Schema({
     middleName: String,
     preferredName: String,
     address: {
-        building: String,
-        street: String,
-        city: String,
-        state: String,
-        zip: Number
+        building: {
+            type: String,
+            default: null
+        },
+        street: {
+            type: String,
+            default: null
+        },
+        city: {
+            type: String,
+            default: null
+        },
+        state: {
+            type: String,
+            default: null
+        },
+        zip: {
+            type: Number,
+            default: null
+        }
     },
     phoneNumber: {
-        cell: String,
-        work: String
+        cell: {
+            type: String,
+            default: null
+        },
+        work: {
+            type: String,
+            default: null
+        }
     },
     car: {
-        brand: String,
-        model: String,
-        color: String
+        brand: {
+            type: String,
+            default: null
+        },
+        model: {
+            type: String,
+            default: null
+        },
+        color: {
+            type: String,
+            default: null
+        }
     },
     ssn: String,
     dateOfBirth: Date,
@@ -49,26 +79,60 @@ const userSchema = new Schema({
         enum: ['male', 'female', 'I do not wish to answer']
     },
     citizenship: Boolean,
-    visa: {
-        type: String
-    },
+    visa: String,
     employment: {
-        title: String,
-        startDate: Date,
-        endDate: Date
+        title: {
+            type: String,
+            default: null
+        },
+        startDate: {
+            type: Date,
+            default: null
+        },
+        endDate: {
+            type: Date,
+            default: null
+        }
     },
     driverLicense: {
-        haveLicense: Boolean,
-        number: Number,
-        expirationDate: Date
+        haveLicense: {
+            type: Boolean,
+            default: null
+        },
+        number: {
+            type: Number,
+            default: null
+        },
+        expirationDate: {
+            type: Date,
+            default: null
+        }
     },
     referenceContact: {
-        firstName: String,
-        lastName: String,
-        middleName: String,
-        phone: String,
-        email: String,
-        relationship: String
+        firstName: {
+            type: String,
+            default: null
+        },
+        lastName: {
+            type: String,
+            default: null
+        },
+        middleName: {
+            type: String,
+            default: null
+        },
+        phone: {
+            type: String,
+            default: null
+        },
+        email: {
+            type: String,
+            default: null
+        },
+        relationship: {
+            type: String,
+            default: null
+        }
     },
     emergencyContact: [{
         firstName: String,
@@ -82,7 +146,8 @@ const userSchema = new Schema({
         type: String,
         enum: ['Pending', 'Approved', 'Rejected', 'Never_Submitted'],
         default: 'Never_Submitted'
-    }
+    },
+    rejectedReason: String
 });
 
 const User = mongoose.model("User", userSchema);
