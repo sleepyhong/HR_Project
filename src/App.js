@@ -7,11 +7,11 @@ import Login from "./component/Login/Login";
 
 // Pages
 import HRAdminHome from './pages/HRAdminHome';
-import EmployeeProfiles from "./pages/EmployeeProfiles";
+import EmployeeProfiles from "./pages/EmployeeProfiles/EmployeeProfiles";
+import EmployeeDetail from "./pages/EmployeeProfiles/EmployeeDetail";
 import VisaStatusManagement from "./pages/VisaStatusManagement";
 import HousingManagement from "./pages/HousingManagement";
 import HiringManagement from './pages/HiringManagement';
-
 import Logout from "./pages/Logout";
 
 function App() {
@@ -20,13 +20,17 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/">
-        <Route index element={<HRAdminHome />} />
-        <Route path="information" element={<EmployeeProfiles />} />
-        <Route path="visa" element={<VisaStatusManagement />} />
-        <Route path="housing" element={<HousingManagement />} />
-        <Route path="hiring" element={<HiringManagement />} />
-        <Route path="login" element={<Login />} />
-        <Route path="logout" element={<Logout />} />
+          <Route index element={<HRAdminHome />} />
+
+          <Route path="/profiles" element={<EmployeeProfiles />} />
+          <Route path="/profiles/:userId" element={<EmployeeDetail />} />
+          
+          <Route path="visa" element={<VisaStatusManagement />} />
+          <Route path="housing" element={<HousingManagement />} />
+          <Route path="hiring" element={<HiringManagement />} />
+          <Route path="login" element={<Login />} />
+          <Route path="logout" element={<Logout />} />
+
         </Route>
       </Routes>
     </Container>
