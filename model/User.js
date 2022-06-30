@@ -47,11 +47,6 @@ const userSchema = new Schema({
         startDate: Date,
         endDate: Date
     },
-    driverLicense: {
-        number: Number,
-        expirationDate: Date,
-        document: []
-    },
     referenceContact: {
         firstName: String,
         lastName: String,
@@ -69,13 +64,22 @@ const userSchema = new Schema({
         relationship: String
     },
     visa: {
-        type: String,
-        enum: ['Citizen', 'Green Card', 'OPT']
+        type: {
+            type: String,
+            enum: ['Citizen', 'Green Card', 'H1-B','L2','F1(CPT/OPT)', 'H4', 'Other'],
+        },
+        startDate: Date,
+        endDate: Date,
+        document: []
     },
-    isDrivingCar: Boolean,
-    documents: [{
-    }],
+    DriverLicense: {
+        number: String,
+        expirationDate: Date,
+        document: []
+    }
+
+    
 });
 
-const User = mongoose.model("User", userSchema);
-module.exports = User;
+module.exports  = mongoose.model("User", userSchema);
+
