@@ -48,6 +48,7 @@ const userSchema = new Schema({
         type: String,
         enum: ['male', 'female', 'I do not wish to answer']
     },
+    citizenship: Boolean,
     visa: {
         type: String,
         enum: ['Citizen', 'Green_Card', 'H1-B', 'L2', 'F1(CPT/OPT)', 'H4', 'Other']

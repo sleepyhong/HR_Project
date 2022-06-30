@@ -61,7 +61,7 @@ export default function Navbar() {
     switch (userInfo.applicationStatus) {
         case "Never_Submitted":
             return (
-                <Accordion defaultActiveKey="0">
+                <Accordion defaultActiveKey="0" alwaysOpen>
                     <form action="/application" method="POST" onSubmit={submitApplication}>
                         <Name />
                         <ProfilePicture />
@@ -80,22 +80,26 @@ export default function Navbar() {
                 </Accordion>
             );
         case "Pending":
-            console.log(user)
             return (
                 <>
                     <h3>Please wait for HR to review your application</h3>
-                    <form>
-                        <div class="form-outline mb-4">
-                            <label for="firstName" class="form-label">First Name</label>
-                            <input type="text" id="firstName" name="firstName" class="form-control" value={store.getState().firstName} disabled />
-                            <label for="lastName" class="form-label">Last Name</label>
-                            <input type="text" id="lastName" name="lastName" class="form-control" value={store.getState().lastName} disabled />
-                            <label for="middleName" class="form-label">Middle Name</label>
-                            <input type="text" id="middleName" name="middleName" class="form-control" value={store.getState().middleName} disabled />
-                            <label for="preferredName" class="form-label">Preferred Name</label>
-                            <input type="text" id="preferredName" name="preferredName" class="form-control" value={store.getState().preferredName} disabled />
-                        </div>
-                    </form>
+                    <Accordion defaultActiveKey="0" alwaysOpen>
+                        <form action="/application" method="POST" onSubmit={submitApplication}>
+                            <Name />
+                            <ProfilePicture />
+                            <Address />
+                            <PhoneNumber />
+                            <Car />
+                            <Email />
+                            <Personal />
+                            <Citizenship />
+                            <DriverLicense />
+                            <Reference />
+                            <Emergency />
+                            <button type="submit">Submit</button>
+                        </form>
+                        <p>{userInfo.msg}</p>
+                    </Accordion>
                 </>
             )
         default:

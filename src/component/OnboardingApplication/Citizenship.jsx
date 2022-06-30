@@ -42,12 +42,12 @@ export default function Citizenship() {
         <Accordion.Item eventKey="7">
             <Accordion.Header>Citizenship</Accordion.Header>
             <Accordion.Body>
-                <label for="citizen" class="form-label">Are you a citizen or permanent resident of the U.S?</label>
-                <select id="citizen" name="citizen" class="form-control" onChange={changeVisaStatus} required>
+                <label for="citizenship" class="form-label">Are you a citizen or permanent resident of the U.S?</label>
+                <select id="citizenship" name="citizenship" class="form-control" onChange={changeVisaStatus} required value={store.getState().citizenship} disabled={store.getState().applicationStatus === "Pending"}>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
-                <select id="visa" name="visa" class="form-control" onChange={changeVisaType} required>
+                <select id="visa" name="visa" class="form-control" onChange={changeVisaType} required value={store.getState().visa} disabled={store.getState().applicationStatus === "Pending"} >
                     {userInfo.visa ? (
                         <>
                             <option value="Citizen">Citizen</option>
@@ -84,9 +84,9 @@ export default function Citizenship() {
                         </>
                 }
                 <label for="startDate" class="form-label">Start Date</label>
-                <input type="date" id="startDate" name="startDate" class="form-control" />
+                <input type="date" id="startDate" name="startDate" class="form-control" value={store.getState().employment.startDate} disabled={store.getState().applicationStatus === "Pending"} />
                 <label for="endDate" class="form-label">End Date</label>
-                <input type="date" id="endDate" name="endDate" class="form-control" />
+                <input type="date" id="endDate" name="endDate" class="form-control" value={store.getState().employment.endDate} disabled={store.getState().applicationStatus === "Pending"} />
             </Accordion.Body>
         </Accordion.Item>
     )
