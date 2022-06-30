@@ -34,10 +34,25 @@ export default function Navbar() {
         const inputs = {
             userId: userInfo._id
         };
-
+        
+        const files = new FormData();
         for (let element of event.target.elements) {
-            inputs[element.name] = element.value;
+            if (element.type === "file") {
+                files[element.name] = element.files[0];
+            }
+            else {
+                inputs[element.name] = element.value;
+            }
         }
+
+        axios
+            .post("/application-documents", files)
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
 
         axios
             .post("/application", inputs)

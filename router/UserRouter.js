@@ -68,6 +68,7 @@ router.post('/application', async (req, res) => {
             lastName: req.body.lastName,
             middleName: req.body.middleName,
             preferredName: req.body.preferredName,
+            profilePicture: req.body.profilePicture,
             address: {
                 building: req.body.building,
                 street: req.body.street,
@@ -123,7 +124,7 @@ router.post('/application', async (req, res) => {
                 relationship: req.body[`emergencyRelationship${index}`]
             });
         }
-        
+
         const user = await User.findByIdAndUpdate(req.body.userId, inputs);
 
         res
@@ -131,6 +132,24 @@ router.post('/application', async (req, res) => {
             .json({
                 msg: "Updated Application Information Successfully",
                 user: user
+            });
+    }
+    catch (error) {
+        res
+            .status(400)
+            .json({ msg: error.toString() });
+    }
+});
+
+router.post('/application-documents', async (req, res) => {
+    try {
+        const profilePicture = req.files.profilePicture;
+        profilePicture.mv("../public/document/profile_pictures");
+
+        res
+            .status(200)
+            .json({
+                msg: "User Documents Updated"
             });
     }
     catch (error) {
