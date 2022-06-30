@@ -141,24 +141,6 @@ router.post('/application', async (req, res) => {
     }
 });
 
-router.post('/application-documents', async (req, res) => {
-    try {
-        const profilePicture = req.files.profilePicture;
-        profilePicture.mv("../public/document/profile_pictures");
-
-        res
-            .status(200)
-            .json({
-                msg: "User Documents Updated"
-            });
-    }
-    catch (error) {
-        res
-            .status(400)
-            .json({ msg: error.toString() });
-    }
-});
-
 router.post('/information', async (req, res) => {
     try {
         await User.findByIdAndUpdate(req.body.userId, req.body);

@@ -46,15 +46,6 @@ export default function Navbar() {
         }
 
         axios
-            .post("/application-documents", files)
-            .then((result) => {
-                console.log(result);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-
-        axios
             .post("/application", inputs)
             .then((result) => {
                 setUser(result.data.user);
