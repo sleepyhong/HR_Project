@@ -1,5 +1,6 @@
 const Logout = () => {
-    return <h1>Logout</h1>;
+    sessionStorage.removeItem('user');
+    window.location.replace("/login");
 };
 
 export default Logout;

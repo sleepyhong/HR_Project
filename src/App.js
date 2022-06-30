@@ -1,40 +1,40 @@
 import { Route, Routes } from "react-router-dom";
+import { Container } from 'react-bootstrap';
+
+// Components
+import Navbar from './component/Navbar/Navbar';
+import Login from "./component/Login/Login";
 
 // Pages
 import HRAdminHome from './pages/HRAdminHome';
-import EmployeeProfiles from "./pages/EmployeeProfiles";
+import EmployeeProfiles from "./pages/EmployeeProfiles/EmployeeProfiles";
+import EmployeeDetail from "./pages/EmployeeProfiles/EmployeeDetail";
 import VisaStatusManagement from "./pages/VisaStatusManagement";
 import HousingManagement from "./pages/HousingManagement";
 import HiringManagement from './pages/HiringManagement';
-import Login from "./pages/Login";
 import Logout from "./pages/Logout";
-
-// Bootstrap helper components
-import {Container} from 'react-bootstrap';
-
-// Components
-import HRAdminNavBar from './components/NavBar/HRAdminNavBar';
 
 function App() {
   return (
-    <Container fluid="md" className="mt-3">
-
-      {/* HR Admin NavBar */}
-      <HRAdminNavBar />
-
+    <Container>
+      <Navbar />
       <Routes>
         <Route path="/">
-        <Route index element={<HRAdminHome />} />
-        <Route path="information" element={<EmployeeProfiles />} />
-        <Route path="visa" element={<VisaStatusManagement />} />
-        <Route path="housing" element={<HousingManagement />} />
-        <Route path="hiring" element={<HiringManagement />} />
-        <Route path="login" element={<Login />} />
-        <Route path="logout" element={<Logout />} />
+          <Route index element={<HRAdminHome />} />
+
+          <Route path="/profiles" element={<EmployeeProfiles />} />
+          <Route path="/profiles/:userId" element={<EmployeeDetail />} />
+          
+          <Route path="visa" element={<VisaStatusManagement />} />
+          <Route path="housing" element={<HousingManagement />} />
+          <Route path="hiring" element={<HiringManagement />} />
+          <Route path="login" element={<Login />} />
+          <Route path="logout" element={<Logout />} />
+
         </Route>
       </Routes>
     </Container>
-  );
-}
+  )
+};
 
 export default App;

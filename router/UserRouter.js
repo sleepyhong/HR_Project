@@ -14,7 +14,7 @@ router.post('/login', async function(req, res) {
 
         res.json({
             success: true,
-            userId: user['_id']
+            user: user
         });
     }
     catch (error) {

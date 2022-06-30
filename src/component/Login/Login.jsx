@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { setUser } from "../../redux/userAction";
 
 export default class Login extends Component {
     constructor(props) {
@@ -21,7 +22,9 @@ export default class Login extends Component {
             .post("/login", inputs)
             .then((result) => {
                 if (result.data.success) {
-                    sessionStorage.setItem('userId', result.data.userId);
+                    sessionStorage.setItem('user', result.data.user);
+                    console.log(result.data.user)
+                    setUser(result.data.user);
 
                     //redirect to application page or personal info page?
                 }
