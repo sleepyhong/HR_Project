@@ -88,12 +88,13 @@ router.post('/application', async (req, res) => {
             dateOfBirth: req.body.dateOfBirth,
             gender: req.body.gender,
             citizenship: req.body.citizenship === "yes",
-            visa: req.body.visa,
+            visa: req.body.visa === "Other" ? req.body.visaTitle : req.body.visa,
             employment: {
                 startDate: req.body.startDate,
                 endDate: req.body.endDate
             },
             driverLicense: {
+                haveLicense: req.body.driverLicense === "yes",
                 number: req.body.driverLicenseNumber,
                 expirationDate: req.body.expirationDate
             },
@@ -114,12 +115,12 @@ router.post('/application', async (req, res) => {
 
         for (let index = 0; req.body[`emergencyFirstName${index}`]; index++) {
             inputs.emergencyContact.push({
-                firstName: req.body.emergencyFirstName,
-                lastName: req.body.emergencyLastName,
-                middleName: req.body.emergencyMiddleName,
-                phone: req.body.emergencyCellPhone,
-                email: req.body.emergencyEmail,
-                relationship: req.body.emergencyRelationship
+                firstName: req.body[`emergencyFirstName${index}`],
+                lastName: req.body[`emergencyLastName${index}`],
+                middleName: req.body[`emergencyMiddleName${index}`],
+                phone: req.body[`emergencyCellPhone${index}`],
+                email: req.body[`emergencyEmail${index}`],
+                relationship: req.body[`emergencyRelationship${index}`]
             });
         }
         

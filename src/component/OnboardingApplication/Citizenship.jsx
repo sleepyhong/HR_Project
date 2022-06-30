@@ -67,7 +67,7 @@ export default function Citizenship() {
                     userInfo.f1Selected ? (
                         <>
                             <label for="octReceipt" class="form-label">OCT Receipt</label>
-                            <input type="file" id="octReceipt" name="octReceipt" class="form-control" />
+                            <input type="file" id="octReceipt" name="octReceipt" class="form-control" disabled={store.getState().applicationStatus === "Pending"} />
                         </>
                     ) :
                         <>
@@ -77,16 +77,16 @@ export default function Citizenship() {
                     userInfo.otherSelected ? (
                         <>
                             <label for="visaTitle" class="form-label">Visa Title</label>
-                            <input type="text" id="visaTitle" name="visaTitle" class="form-control" />
+                            <input type="text" id="visaTitle" name="visaTitle" class="form-control" value={store.getState().visa} disabled={store.getState().applicationStatus === "Pending"} />
                         </>
                     ) :
                         <>
                         </>
                 }
                 <label for="startDate" class="form-label">Start Date</label>
-                <input type="date" id="startDate" name="startDate" class="form-control" value={store.getState().employment.startDate} disabled={store.getState().applicationStatus === "Pending"} />
+                <input type="date" id="startDate" name="startDate" class="form-control" value={store.getState().employment.startDate.substr(0, 10)} disabled={store.getState().applicationStatus === "Pending"} />
                 <label for="endDate" class="form-label">End Date</label>
-                <input type="date" id="endDate" name="endDate" class="form-control" value={store.getState().employment.endDate} disabled={store.getState().applicationStatus === "Pending"} />
+                <input type="date" id="endDate" name="endDate" class="form-control" value={store.getState().employment.endDate.substr(0, 10)} disabled={store.getState().applicationStatus === "Pending"} />
             </Accordion.Body>
         </Accordion.Item>
     )

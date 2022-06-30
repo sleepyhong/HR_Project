@@ -50,8 +50,7 @@ const userSchema = new Schema({
     },
     citizenship: Boolean,
     visa: {
-        type: String,
-        enum: ['Citizen', 'Green_Card', 'H1-B', 'L2', 'F1(CPT/OPT)', 'H4', 'Other']
+        type: String
     },
     employment: {
         title: String,
@@ -59,6 +58,7 @@ const userSchema = new Schema({
         endDate: Date
     },
     driverLicense: {
+        haveLicense: Boolean,
         number: Number,
         expirationDate: Date
     },
@@ -70,15 +70,14 @@ const userSchema = new Schema({
         email: String,
         relationship: String
     },
-    emergencyContact: {
+    emergencyContact: [{
         firstName: String,
         lastName: String,
         middleName: String,
         phone: String,
         email: String,
         relationship: String
-    },
-    isDrivingCar: Boolean,
+    }],
     applicationStatus: {
         type: String,
         enum: ['Pending', 'Approved', 'Rejected', 'Never_Submitted'],

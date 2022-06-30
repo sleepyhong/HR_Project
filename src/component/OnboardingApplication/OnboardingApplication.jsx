@@ -96,7 +96,12 @@ export default function Navbar() {
                             <DriverLicense />
                             <Reference />
                             <Emergency />
-                            <button type="submit">Submit</button>
+                            {
+                                store.getState().applicationStatus === "Pending" ?
+                                    <>
+                                    </> :
+                                    <button type="submit">Submit</button>
+                            }
                         </form>
                         <p>{userInfo.msg}</p>
                     </Accordion>

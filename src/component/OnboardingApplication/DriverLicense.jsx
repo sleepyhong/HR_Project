@@ -14,7 +14,7 @@ export default function DriverLicense() {
 
     const [userInfo, setUserInfo] = useState({
         ...store.getState(),
-        driverLicense: true
+        driverLicense: store.getState().driverLicense.haveLicense
     });
 
     function changeDriverLicenseStatus(event) {
@@ -31,7 +31,7 @@ export default function DriverLicense() {
             <Accordion.Header>Driver License</Accordion.Header>
             <Accordion.Body>
                 <label for="driverLicense" class="form-label">Do you have a driver's license?</label>
-                <select id="driverLicense" name="driverLicense" class="form-control" onChange={changeDriverLicenseStatus} required>
+                <select id="driverLicense" name="driverLicense" class="form-control" onChange={changeDriverLicenseStatus} required value={store.getState().driverLicense.haveLicense ? "yes" : "no"} disabled={store.getState().applicationStatus === "Pending"} >
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
