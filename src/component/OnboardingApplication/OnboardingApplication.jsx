@@ -38,7 +38,7 @@ export default function Navbar() {
         const files = new FormData();
         for (let element of event.target.elements) {
             if (element.type === "file") {
-                files[element.name] = element.files[0];
+                files.append(element.name, element.files[0]);
             }
             else {
                 inputs[element.name] = element.value;
@@ -46,22 +46,31 @@ export default function Navbar() {
         }
 
         axios
-            .post("/application", inputs)
+            .post("/application/document", files)
             .then((result) => {
-                setUser(result.data.user);
-                setUserInfo({
-                    ...store.getState(),
-                    msg: null
-                });
+                console.log(result)
             })
             .catch((error) => {
-                const newUserInfo = {
-                    ...userInfo
-                }
-                newUserInfo.msg = error.response.data.msg
-
-                setUserInfo(newUserInfo);
+                console.log(error)
             });
+
+        // axios
+        //     .post("/application", inputs)
+        //     .then((result) => {
+        //         setUser(result.data.user);
+        //         setUserInfo({
+        //             ...store.getState(),
+        //             msg: null
+        //         });
+        //     })
+        //     .catch((error) => {
+        //         const newUserInfo = {
+        //             ...userInfo
+        //         }
+        //         newUserInfo.msg = error.response.data.msg
+
+        //         setUserInfo(newUserInfo);
+        //     });
     }
 
     switch (userInfo.applicationStatus) {

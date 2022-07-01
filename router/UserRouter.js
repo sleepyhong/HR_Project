@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
+const path = require("path");
 const User = require("../model/User");
 const Token = require("../model/RegisterToken");
 
@@ -68,7 +69,7 @@ router.post('/application', async (req, res) => {
             lastName: req.body.lastName,
             middleName: req.body.middleName,
             preferredName: req.body.preferredName,
-            profilePicture: req.body.profilePicture,
+            // profilePicture: req.body.profilePicture,
             address: {
                 building: req.body.building,
                 street: req.body.street,
@@ -133,6 +134,19 @@ router.post('/application', async (req, res) => {
                 msg: "Updated Application Information Successfully",
                 user: user
             });
+    }
+    catch (error) {
+        res
+            .status(400)
+            .json({ msg: error.toString() });
+    }
+});
+
+router.post('/application/document', async (req, res) => {
+    try {
+        const { profilePicture } = req.files;
+        profilePicture.mv(path.resolve(__dirname, `../public/document/profile_pictures/`, profilePicture.name));
+
     }
     catch (error) {
         res
