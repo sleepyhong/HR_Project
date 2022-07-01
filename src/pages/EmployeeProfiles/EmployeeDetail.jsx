@@ -5,9 +5,13 @@ import { useParams } from "react-router-dom";
 function EmployeeDetail() {
     const location = useLocation()
     const { user } = location.state
+<<<<<<< HEAD
     const { userId } = useParams();
 
     console.log(user)
+=======
+    // console.log(user)
+>>>>>>> 94ad2e9 (Updating main)
     return (
         <Container className="my-3">
             <h4>{user.firstName + ' ' + user.lastName}</h4>

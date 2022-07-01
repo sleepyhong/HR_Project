@@ -12,12 +12,16 @@ const houseSchema = new Schema({
         email: String
     },
     residents: [{
-        _id: Schema.Types.ObjectId,
-        ref: "User"
+        userId: {
+            type: Schema.Types.ObjectId,
+            ref: "User"
+        }
     }],
     reports: [{
-        _id: Schema.Types.ObjectId,
-        ref: "Report"
+        reportId: {
+            type: Schema.Types.ObjectId,
+            ref: "Report"
+        }
     }],
     facility: {
         bed: Number,
@@ -27,8 +31,6 @@ const houseSchema = new Schema({
         bathroom: Number
     }
 });
-
-// house?
 
 const House = mongoose.model("House", houseSchema);
 module.exports = House;
