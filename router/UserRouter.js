@@ -126,7 +126,7 @@ router.post('/application', async (req, res) => {
             });
         }
 
-        const user = await User.findByIdAndUpdate(req.body.userId, inputs);
+        const user = await User.findByIdAndUpdate(req.body.userId, inputs, { new: true });
 
         res
             .status(200)
