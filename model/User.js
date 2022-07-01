@@ -19,67 +19,158 @@ const userSchema = new Schema({
     type: {
         type: String,
         enum: ['hiring_manager', 'employee'],
+        default: "employee",
         required: true
     },
     firstName: String,
     lastName: String,
     middleName: String,
     preferredName: String,
+    profilePicture: String,
+    address: {
+        building: {
+            type: String,
+            default: null
+        },
+        street: {
+            type: String,
+            default: null
+        },
+        city: {
+            type: String,
+            default: null
+        },
+        state: {
+            type: String,
+            default: null
+        },
+        zip: {
+            type: Number,
+            default: null
+        }
+    },
+    phoneNumber: {
+        cell: {
+            type: String,
+            default: null
+        },
+        work: {
+            type: String,
+            default: null
+        }
+    },
+    car: {
+        brand: {
+            type: String,
+            default: null
+        },
+        model: {
+            type: String,
+            default: null
+        },
+        color: {
+            type: String,
+            default: null
+        }
+    },
     ssn: String,
     dateOfBirth: Date,
     gender: {
         type: String,
-        enum: ['male', 'female']
+        enum: ['male', 'female', 'I do not wish to answer']
     },
-    address: {
-        building: String,
-        street: String,
-        city: String,
-        state: String,
-        zip: Number
-    },
-    phoneNumber: {
-        cell: String,
-        work: String
-    },
+    citizenship: Boolean,
+    visa: String,
     employment: {
-        title: String,
+        title: {
+            type: String,
+            default: null
+        },
+        startDate: {
+            type: Date,
+            default: null
+        },
+        endDate: {
+            type: Date,
+            default: null
+        }
+    },
+    driverLicense: {
+        haveLicense: {
+            type: Boolean,
+            default: null
+        },
+        number: {
+            type: Number,
+            default: null
+        },
+        expirationDate: {
+            type: Date,
+            default: null
+        }
+    },
+    referenceContact: {
+        firstName: {
+            type: String,
+            default: null
+        },
+        lastName: {
+            type: String,
+            default: null
+        },
+        middleName: {
+            type: String,
+            default: null
+        },
+        phone: {
+            type: String,
+            default: null
+        },
+        email: {
+            type: String,
+            default: null
+        },
+        relationship: {
+            type: String,
+            default: null
+        }
+    },
+    emergencyContact: [{
+        firstName: String,
+        lastName: String,
+        middleName: String,
+        phone: String,
+        email: String,
+        relationship: String
+    }],
+    visa: {
+        type: {
+            type: String
+        },
         startDate: Date,
         endDate: Date
     },
-    referenceContact: {
-        firstName: String,
-        lastName: String,
-        middleName: String,
-        phone: String,
-        email: String,
-        relationship: String
-    },
-    emergencyContact: {
-        firstName: String,
-        lastName: String,
-        middleName: String,
-        phone: String,
-        email: String,
-        relationship: String
-    },
-    visa: {
-        type: {
-            type: String,
-            enum: ['Citizen', 'Green Card', 'H1-B','L2','F1(CPT/OPT)', 'H4', 'Other'],
-        },
-        startDate: Date,
-        endDate: Date,
-        document: []
-    },
     DriverLicense: {
-        number: String,
-        expirationDate: Date,
-        document: []
-    }
-
-    
+        haveLicense: {
+            type: Boolean,
+            default: null
+        },
+        number: {
+            type: Number,
+            default: null
+        },
+        expirationDate: {
+            type: Date,
+            default: null
+        }
+    },
+    applicationStatus: {
+        type: String,
+        enum: ['Pending', 'Approved', 'Rejected', 'Never_Submitted'],
+        default: 'Never_Submitted'
+    },
+    rejectedReason: String
 });
 
-module.exports  = mongoose.model("User", userSchema);
-
+const User = mongoose.model("User", userSchema);
+module.exports = User;

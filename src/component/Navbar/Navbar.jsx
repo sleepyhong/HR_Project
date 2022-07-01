@@ -1,24 +1,29 @@
 import React, { useState } from "react";
-// import { useSelector } from 'react-redux';
 import EmployeeNavbar from "./EmployeeNavbar";
 import HRNavbar from "./HRNavbar";
 import store from "../../redux/store";
-// import selectorUserType from '../../redux/selectors';
 
 export default function Navbar() {
-    const [employeeView, setEmployeeView] = useState(store.getState().type === "employee");
-
-    store.subscribe(() => {
-        changeEmployeeView();
+    const accountType = store.getState().type;
+    const [viewState, setViewState] = useState({
+        employeeView: !accountType || accountType === "employee",
+        loggedIn: sessionStorage.getItem("user") ? false : true
     });
 
-    const changeEmployeeView = () => {
-        setEmployeeView(store.getState().type === "employee");
+    store.subscribe(() => {
+        changeViewState();
+    });
+
+    const changeViewState = () => {
+        setViewState({
+            employeeView: store.getState().type === "employee",
+            loggedIn: sessionStorage.getItem("user") ? false : true
+        });
     }
 
     return (
         <>
-            {employeeView ? <EmployeeNavbar /> : <HRNavbar />}
+            {viewState.employeeView ? <EmployeeNavbar /> : <HRNavbar />}
         </>
     );
 }
