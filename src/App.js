@@ -3,16 +3,11 @@ import { Container } from 'react-bootstrap';
 
 // Components
 import Navbar from './component/Navbar/Navbar';
-import Login from "./component/Login/Login";
 
 // Pages
 import HRAdminHome from './pages/HRAdminHome';
 import EmployeeProfiles from "./pages/EmployeeProfiles/EmployeeProfiles";
 import EmployeeDetail from "./pages/EmployeeProfiles/EmployeeDetail";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import Navbar from './component/Navbar/Navbar';
-import HRAdminHome from './pages/HRAdminHome';
-import EmployeeProfiles from "./pages/EmployeeProfiles";
 import VisaStatusManagement from "./pages/VisaStatusManagement";
 import HousingManagement from "./pages/HousingManagement";
 import HiringManagement from './pages/HiringManagement';

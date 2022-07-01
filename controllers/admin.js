@@ -1,7 +1,7 @@
 const User = require('../model/User');
 
 exports.getUsers = (req, res, next) => {
-    User.find()
+    User.find({ type: "employee" })
     .then(users => {
         res.json(users)
     })

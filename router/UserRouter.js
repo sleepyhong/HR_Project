@@ -90,8 +90,8 @@ router.post('/application', async (req, res) => {
             dateOfBirth: req.body.dateOfBirth,
             gender: req.body.gender,
             citizenship: req.body.citizenship === "yes",
-            visa: req.body.visa === "Other" ? req.body.visaTitle : req.body.visa,
-            employment: {
+            visa: {
+                type: req.body.visa === "Other" ? req.body.visaTitle : req.body.visa,
                 startDate: req.body.startDate,
                 endDate: req.body.endDate
             },
