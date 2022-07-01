@@ -5,7 +5,7 @@ const reportSchema = new Schema({
     title: String,
     description: String,
     userId: {
-        _id: Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "User"
     },
     date: Date,

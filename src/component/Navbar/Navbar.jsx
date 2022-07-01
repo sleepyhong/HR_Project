@@ -16,14 +16,15 @@ export default function Navbar() {
 
     const changeViewState = () => {
         setViewState({
-            employeeView: store.getState().type === "employee",
+            employeeView: store.getState().type === "hiring",
             loggedIn: sessionStorage.getItem("user") ? false : true
         });
     }
 
     return (
         <>
-            {viewState.employeeView ? <EmployeeNavbar /> : <HRNavbar />}
+            {/* {viewState.employeeView ? <EmployeeNavbar /> : <HRNavbar />} */}
+            <HRNavbar />
         </>
     );
 }

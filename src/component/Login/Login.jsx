@@ -40,16 +40,16 @@ export default class Login extends Component {
             <>
                 <h3>Login</h3>
                 <form onSubmit={this.submitForm}>
-                    <div class="form-outline mb-4">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" />
+                    <div className="form-outline mb-4">
+                        <label htmlFor="email" className="form-label">Email</label>
+                        <input type="email" id="email" name="email" className="form-control" placeholder="Enter your email" />
                     </div>
-                    <div class="form-outline mb-4">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password" />
+                    <div className="form-outline mb-4">
+                        <label htmlFor="password" className="form-label">Password</label>
+                        <input autoComplete="true" type="password" id="password" name="password" className="form-control" placeholder="Enter your password" />
                     </div>
                     <p>{this.state.error}</p>
-                    <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
+                    <button type="submit" className="btn btn-primary btn-block mb-4">Login</button>
                 </form>
             </>
         );

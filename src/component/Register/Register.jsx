@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { setUser } from "../../redux/userAction";
+// import { setUser } from "../../redux/userAction";
 
 export default function Register() {
     const [error, setError] = useState(null);
