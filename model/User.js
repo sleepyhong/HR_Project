@@ -143,6 +143,27 @@ const userSchema = new Schema({
         email: String,
         relationship: String
     }],
+    visa: {
+        type: {
+            type: String
+        },
+        startDate: Date,
+        endDate: Date
+    },
+    DriverLicense: {
+        haveLicense: {
+            type: Boolean,
+            default: null
+        },
+        number: {
+            type: Number,
+            default: null
+        },
+        expirationDate: {
+            type: Date,
+            default: null
+        }
+    },
     applicationStatus: {
         type: String,
         enum: ['Pending', 'Approved', 'Rejected', 'Never_Submitted'],

@@ -1,3 +1,14 @@
+import { Route, Routes } from "react-router-dom";
+import { Container } from 'react-bootstrap';
+
+// Components
+import Navbar from './component/Navbar/Navbar';
+import Login from "./component/Login/Login";
+
+// Pages
+import HRAdminHome from './pages/HRAdminHome';
+import EmployeeProfiles from "./pages/EmployeeProfiles/EmployeeProfiles";
+import EmployeeDetail from "./pages/EmployeeProfiles/EmployeeDetail";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Navbar from './component/Navbar/Navbar';
 import HRAdminHome from './pages/HRAdminHome';
@@ -13,11 +24,13 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
+    <Container>
       <Navbar />
       <Routes>
         <Route path="/">
           <Route index element={<HRAdminHome />} />
+          <Route path="profiles" element={<EmployeeProfiles />} />
+          <Route path="profiles/:userId" element={<EmployeeDetail />} />
           <Route path="application" element={<OnboardingApplication />}/>
           <Route path="information" element={<EmployeeProfiles />} />
           <Route path="visa" element={<VisaStatusManagement />} />
@@ -28,7 +41,7 @@ function App() {
           <Route path="register/:token" element={<Register />} />
         </Route>
       </Routes>
-    </div>
+    </Container>
   )
 };
 
