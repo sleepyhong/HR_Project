@@ -36,6 +36,7 @@ export default function Navbar() {
         };
         
         const files = new FormData();
+        files.append('userId', userInfo._id);
         for (let element of event.target.elements) {
             if (element.type === "file") {
                 files.append(element.name, element.files[0]);
@@ -54,23 +55,23 @@ export default function Navbar() {
                 console.log(error)
             });
 
-        // axios
-        //     .post("/application", inputs)
-        //     .then((result) => {
-        //         setUser(result.data.user);
-        //         setUserInfo({
-        //             ...store.getState(),
-        //             msg: null
-        //         });
-        //     })
-        //     .catch((error) => {
-        //         const newUserInfo = {
-        //             ...userInfo
-        //         }
-        //         newUserInfo.msg = error.response.data.msg
+        axios
+            .post("/application", inputs)
+            .then((result) => {
+                setUser(result.data.user);
+                setUserInfo({
+                    ...store.getState(),
+                    msg: null
+                });
+            })
+            .catch((error) => {
+                const newUserInfo = {
+                    ...userInfo
+                }
+                newUserInfo.msg = error.response.data.msg
 
-        //         setUserInfo(newUserInfo);
-        //     });
+                setUserInfo(newUserInfo);
+            });
     }
 
     switch (userInfo.applicationStatus) {
@@ -124,18 +125,7 @@ export default function Navbar() {
                 </>
             );
         case "Approved":
-            return (
-                <>
-                    <h3>Your application has been approved.</h3>
-                    <Accordion defaultActiveKey="0" alwaysOpen>
-                        <form>
-                            <ProfilePicture />
-                            <DriverLicense />
-                            <Citizenship />
-                        </form>
-                    </Accordion>
-                </>
-            );
+            window.location.replace('/home');
         default:
             break;
     }

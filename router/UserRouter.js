@@ -144,9 +144,22 @@ router.post('/application', async (req, res) => {
 
 router.post('/application/document', async (req, res) => {
     try {
-        const { profilePicture } = req.files;
-        profilePicture.mv(path.resolve(__dirname, `../public/document/profile_pictures/`, profilePicture.name));
+        const profilePicture = req.files.profilePicture;
+        const octReceipt = req.files.octReceipt;
+        const driverLicenseFile  = req.files.driverLicenseFile;
+        if (profilePicture) {
+            profilePicture.mv(path.resolve(__dirname, `../public/document/profile_pictures/`, `${req.body.userId}.png`));
+        }
+        if (octReceipt) {
+            octReceipt.mv(path.resolve(__dirname, `../public/document/oct/`, `${req.body.userId}.pdf`));
+        }
+        if (driverLicenseFile) {
+            driverLicenseFile.mv(path.resolve(__dirname, `../public/document/driver_license/`, `${req.body.userId}.pdf`));
+        }
 
+        res
+            .status(200)
+            .json({ msg: "Files Uploaded Successful."})
     }
     catch (error) {
         res

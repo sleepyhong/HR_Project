@@ -42,8 +42,17 @@ export default function DriverLicense() {
                             <input type="text" id="driverLicenseNumber" name="driverLicenseNumber" class="form-control" required value={store.getState().driverLicense.number} disabled={store.getState().applicationStatus === "Pending" || store.getState().applicationStatus === "Approved"} />
                             <label for="expirationDate" class="form-label">Expiration Date</label>
                             <input type="date" id="expirationDate" name="expirationDate" class="form-control" required value={store.getState().driverLicense.expirationDate ? store.getState().driverLicense.expirationDate.substr(0, 10) : null} disabled={store.getState().applicationStatus === "Pending" || store.getState().applicationStatus === "Approved"} />
-                            <label for="driverLicenseFile" class="form-label">Upload Driver License File</label>
-                            <input type="file" id="driverLicenseFile" name="driverLicenseFile" class="form-control" required />
+
+                            {
+                                userInfo.applicationStatus === "Pending" ?
+                                    <p>
+                                        <a href={`./document/driver_license/${userInfo._id}.pdf`} download>Driver License</a>
+                                    </p> :
+                                    <>
+                                        <label for="driverLicenseFile" class="form-label">Upload Driver License File</label>
+                                        <input type="file" id="driverLicenseFile" name="driverLicenseFile" class="form-control" accept="application/pdf" required />
+                                    </>
+                            }
                         </>
                     ) :
                         <>
