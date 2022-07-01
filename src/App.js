@@ -15,6 +15,7 @@ import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Register from "./pages/Register";
 import OnboardingApplication from "./pages/OnboardingApplication";
+import Report from "./pages/Report";
 import './App.css';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="information" element={<EmployeeProfiles />} />
           <Route path="visa" element={<VisaStatusManagement />} />
           <Route path="housing" element={<HousingManagement />} />
+          <Route path="report/:reportId" element={<Report />} />
           <Route path="hiring" element={<HiringManagement />} />
           <Route path="login" element={<Login />} />
           <Route path="logout" element={<Logout />} />

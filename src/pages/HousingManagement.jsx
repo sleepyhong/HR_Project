@@ -1,5 +1,7 @@
-const Housing = () => {
-    return <h1>Housing Management</h1>;
+import HousingManagementComponent from "../component/HousingManagement/HousingManagement";
+
+const HousingManagement = () => {
+    return <HousingManagementComponent />;
 };
 
-export default Housing;
+export default HousingManagement;

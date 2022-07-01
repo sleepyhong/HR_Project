@@ -2,7 +2,7 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const path = require("path");
 const User = require("../model/User");
-const Token = require("../model/RegisterToken");
+const House = require("../model/House");
 
 router.post('/login', async function (req, res) {
     try {
@@ -42,11 +42,24 @@ router.post('/register', async (req, res) => {
     if (user || userEmail)
         return res.status(400).json({ msg: 'User already exists' })
 
+    const houses = await House.find({});
     const newUser = new User({
         username: username,
         email: email,
         password: password
-    })
+    });
+    for (let house of houses) {
+        if (house.residents.length < house.facility.bed) {
+            newUser.house = house._id;
+            await House.findByIdAndUpdate(house._id, {
+                residents: [...house.residents, newUser]
+            });
+            break;
+        }
+    }
+    if (!newUser.house) {
+        return res.status(400).json({ msg: "Houses Full" });
+    }
 
     // hashing the password
     bcrypt.hash(password, Number(process.env.SALT), async (err, hash) => {
