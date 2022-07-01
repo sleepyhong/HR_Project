@@ -9,24 +9,24 @@ const EmployeeProfiles = () => {
     const [search, setSearch] = useState("");
 
     useEffect(() => {
-        async function fetchUsers(){
+        async function fetchUsers() {
             const res = await fetch('/profiles')
             res.json().then(data => setUsers(data))
         }
         fetchUsers()
-    },[])
+    }, [])
 
     const displayedUsers = [...users]
 
         // order users alphabetically by last name
-        .sort((a,b) => a.lastName.localeCompare(b.lastName))
+        .sort((a, b) => a.lastName.localeCompare(b.lastName))
 
         // type in the employee’s first name, last name, preferred name
         .filter(user => (
-        (user.firstName.toLowerCase().includes(search.toLowerCase())) || 
-        (user.lastName.toLowerCase().includes(search.toLowerCase())) || 
-        (user.preferredName.toLowerCase().includes(search.toLowerCase()))
-    ))
+            (user.firstName.toLowerCase().includes(search.toLowerCase())) ||
+            (user.lastName.toLowerCase().includes(search.toLowerCase())) ||
+            (user.preferredName.toLowerCase().includes(search.toLowerCase()))
+        ))
 
     return (
         <div>
@@ -36,7 +36,6 @@ const EmployeeProfiles = () => {
                 <p className="text-secondary">Number of users: {users.length}</p>
                 <p className="text-secondary ms-auto">Users are ordered alphabetically by last names</p>
             </Stack>
-            
             <Search search={search} setSearch={setSearch} />
             <Accordion>
                 {displayedUsers.map(user => <EmployeeProfile key={user._id} user={user} /> )}

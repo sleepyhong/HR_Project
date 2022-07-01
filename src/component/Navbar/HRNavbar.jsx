@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
-import { Nav } from 'react-bootstrap';
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import { Nav, Container } from 'react-bootstrap';
 
 export default function HRNavbar() {
     return (
-        <Nav fill variant="tabs" defaultActiveKey="/">
+        <Nav bg="premium" fill variant="tabs" defaultActiveKey="/">
             <Nav.Item>
                 <Nav.Link as={Link} to="/">HR Home</Nav.Link>
             </Nav.Item>
