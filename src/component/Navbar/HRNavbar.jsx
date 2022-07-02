@@ -17,7 +17,7 @@ export default function HRNavbar() {
                 <Nav.Link as={Link} to="/hiring">Hiring Management</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link as={Link} to="/housing">Housing Management</Nav.Link>
+                <Nav.Link as={Link} to="/hr-housing">Housing Management</Nav.Link>
             </Nav.Item>
             {sessionStorage.getItem('user') ?
                 <Nav.Item>

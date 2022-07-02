@@ -24,11 +24,26 @@ const houseSchema = new Schema({
         }
     }],
     facility: {
-        bed: Number,
-        mattress: Number,
-        table: Number,
-        chair: Number,
-        bathroom: Number
+        bed: {
+            type: Number,
+            default: null
+        },
+        mattress: {
+            type: Number, 
+            default: null
+        },
+        table: {
+            type: Number,
+            default: null
+        },
+        chair: {
+            type: Number,
+            default: null
+        },
+        bathroom: {
+            type: Number,
+            default: null
+        }
     }
 });
 

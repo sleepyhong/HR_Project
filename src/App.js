@@ -8,14 +8,14 @@ import Navbar from './component/Navbar/Navbar';
 import HRAdminHome from './pages/HRAdminHome';
 import EmployeeProfiles from "./pages/EmployeeProfiles/EmployeeProfiles";
 import EmployeeDetail from "./pages/EmployeeProfiles/EmployeeDetail";
-import HousingManagement from "./pages/HousingManagement/HousingManagement";
+import HRHousingManagement from "./pages/HRHousingManagement/HRHousingManagement";
+import NewHouseForm from "./pages/HRHousingManagement/NewHouseForm";
 import VisaStatusManagement from "./pages/VisaStatusManagement";
 import HiringManagement from './pages/HiringManagement';
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Register from "./pages/Register";
 import OnboardingApplication from "./pages/OnboardingApplication";
-import './App.css';
 
 function App() {
   return (
@@ -29,7 +29,8 @@ function App() {
           <Route path="application" element={<OnboardingApplication />}/>
           <Route path="information" element={<EmployeeProfiles />} />
           <Route path="visa" element={<VisaStatusManagement />} />
-          <Route path="housing" element={<HousingManagement />} />
+          <Route path="hr-housing" element={<HRHousingManagement />} />
+          <Route path="housing/new" element={<NewHouseForm />} />
           <Route path="hiring" element={<HiringManagement />} />
           <Route path="login" element={<Login />} />
           <Route path="logout" element={<Logout />} />

@@ -16,7 +16,7 @@ export default function Navbar() {
 
     const changeViewState = () => {
         setViewState({
-            employeeView: store.getState().type === "hiring",
+            employeeView: store.getState().type === "employee",
             loggedIn: sessionStorage.getItem("user") ? false : true
         });
     }
