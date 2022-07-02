@@ -29,6 +29,9 @@ export default function FacilityReport() {
 
         axios
             .post('/report', inputs)
+            .then((result) => {
+                setReports([...reports, result.data.report]);
+            })
             .catch((error) => {
                 console.log(error);
             })

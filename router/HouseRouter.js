@@ -53,11 +53,18 @@ router.post("/report", async (req, res) => {
             date: new Date()
         });
 
+        const user = await User.findById(userId);
+        const modifiedReport = {
+            ...report._doc,
+            username: user.username
+        }
+
+        console.log(modifiedReport)
         res
             .status(200)
             .json({
                 msg: "Report Submitted Successfully",
-                report: report
+                report: modifiedReport
             });
     }
     catch (error) {
@@ -82,6 +89,7 @@ router.post("/get-reports", async (req, res) => {
                 _id: report._id,
                 title: report.title,
                 description: report.description,
+                userId: report.userId,
                 username: user.username,
                 date: report.date,
                 status: report.status
@@ -109,18 +117,33 @@ router.post("/comment", async (req, res) => {
         const { reportId, userId, description } = req.body;
 
         const report = await Report.findById(reportId);
-        await Report.findByIdAndUpdate(reportId, {
+        const newReport = await Report.findByIdAndUpdate(reportId, {
             comments: [...report.comments, {
                 description: description,
                 userId: userId,
                 date: new Date()
             }]
-        })
+        }, { 
+            new: true 
+        });
 
+        const user = await User.findById(userId);
+        const modifiedComments = [];
+        if (newReport.comments) {
+            for (const comment of newReport.comments) {
+                modifiedComments.push({
+                    description: comment.description,
+                    username: user.username,
+                    date: comment.date
+                })
+            }
+        }
+        
         res
             .status(200)
             .json({
-                msg: "Uploaded a comment Successfully"
+                msg: "Uploaded a comment Successfully",
+                comments: modifiedComments
             });
     }
     catch (error) {

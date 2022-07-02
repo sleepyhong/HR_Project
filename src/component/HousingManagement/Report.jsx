@@ -55,7 +55,7 @@ export default function Report() {
         axios
             .post('/comment', inputs)
             .then((result) => {
-                console.log(result);
+                setComments(result.data.comments);
             })
             .catch((error) => {
                 console.log(error);
