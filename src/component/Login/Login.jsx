@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { setUser } from "../../redux/userAction";
-
-import "./Login.css";
-
 export default class Login extends Component {
     constructor(props) {
         super(props);

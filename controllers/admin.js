@@ -1,5 +1,7 @@
 const User = require('../model/User');
 const House = require('../model/House');
+const Report = require('../model/Report');
+
 
 // todo: HR Admin views users
 exports.getUsers = (req, res, next) => {
@@ -13,6 +15,8 @@ exports.getUsers = (req, res, next) => {
 // todo: HR Admin views houses
 exports.getHouses = (req, res, next) => {
     House.find()
+    .populate('residents.userId')
+    .populate('reports.reportId')
     .then(houses => {
         res.json(houses)
     })
@@ -22,14 +26,14 @@ exports.getHouses = (req, res, next) => {
 // todo: HR Admin add new house
 exports.postAddHouse = (req, res, next) => {
     const address = req.body.address;
-    const landlordFullName = req.body.landlordFullName;
-    const landlordPhoneNumber = req.body.landlordPhoneNumber;
-    const landlordEmail = req.body.landlordEmail;
-    const bed = req.body.bed;
-    const mattress = req.body.mattress;
-    const table = req.body.table;
-    const chair = req.body.chair;
-    const bathroom = req.body.bathroom;
+    const landlordFullName = req.body.landlord.fullName;
+    const landlordPhoneNumber = req.body.landlord.phoneNumber;
+    const landlordEmail = req.body.landlord.email;
+    const bed = req.body.facility.bed;
+    const mattress = req.body.facility.mattress;
+    const table = req.body.facility.table;
+    const chair = req.body.facility.chair;
+    const bathroom = req.body.facility.bathroom;
 
     const house = new House ({
         address: address,
