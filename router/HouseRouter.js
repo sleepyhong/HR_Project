@@ -134,7 +134,8 @@ router.post("/comment", async (req, res) => {
                 modifiedComments.push({
                     description: comment.description,
                     username: user.username,
-                    date: comment.date
+                    date: comment.date,
+                    userId: comment.userId
                 })
             }
         }
@@ -167,7 +168,8 @@ router.post("/get-comments", async (req, res) => {
                 modifiedComments.push({
                     description: comment.description,
                     username: user.username,
-                    date: comment.date
+                    date: comment.date,
+                    userId: comment.userId
                 })
             }
         }
@@ -177,6 +179,46 @@ router.post("/get-comments", async (req, res) => {
             .json({
                 msg: "Comments Retrieved Successfully",
                 comments: modifiedComments
+            });
+    }
+    catch (error) {
+        res
+            .status(400)
+            .json({
+                msg: error.toString()
+            });
+    }
+});
+
+router.post("/update-comment", async (req, res) => {
+    try {
+        const { reportId, commentIndex, description } = req.body;
+        const report = await Report.findById(reportId);
+
+        const newComments = [...report.comments];
+        newComments[commentIndex].description = description;
+
+        await Report.findByIdAndUpdate(reportId, {
+            comments: newComments
+        })
+
+        const usernames = {};
+        for (const newComment of newComments) {
+            if (newComment.userId in usernames) {
+                newComment.username = usernames[newComment.userId];
+            }
+            else {
+                const user = await User.findById(newComment.userId);
+                usernames[newComment.userId] = user.username;
+                newComment.append("username", user.username);
+            }
+        }
+
+        res
+            .status(200)
+            .json({
+                msg: "Comments Updated Successfully",
+                comments: newComments
             });
     }
     catch (error) {

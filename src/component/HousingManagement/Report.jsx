@@ -62,10 +62,27 @@ export default function Report() {
             });
     }
 
+    const onUpdateComment = (event) => {
+        event.preventDefault();
+
+        axios
+            .post('/update-comment', {
+                reportId: reportId,
+                commentIndex: Number(event.target.name.substr(7)),
+                description: event.target.value
+            })
+            .then((result) => {
+                setComments(result.data.comments);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
     return (
         <>
             <h3>Report</h3>
-            <table class="table table-bordered">
+            <table className="table table-bordered">
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -86,7 +103,7 @@ export default function Report() {
                 </tbody>
             </table>
             <h3>Comments</h3>
-            <table class="table table-bordered">
+            <table className="table table-bordered">
                 <thead>
                     <tr>
                         <th>Description</th>
@@ -96,11 +113,18 @@ export default function Report() {
                 </thead>
                 <tbody>
                     {
-                        comments.map((comment) => {
-                            console.log(comments)
+                        comments.map((comment, index) => {
                             return (
                                 <tr>
-                                    <td>{comment.description}</td>
+                                    {
+                                        store.getState()._id === comment.userId ?
+                                            <td>
+                                                <input id={`comment${index}`} name={`comment${index}`} className={`comment${index}`} defaultValue={comment.description} onChange={onUpdateComment} />
+                                            </td> :
+                                            <td>
+                                                {comment.description}
+                                            </td>
+                                    }
                                     <td>{comment.username}</td>
                                     <td>{comment.date}</td>
                                 </tr>
