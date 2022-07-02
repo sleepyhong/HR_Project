@@ -16,8 +16,8 @@ export default function Email() {
         <Accordion.Item eventKey="5">
             <Accordion.Header>Email</Accordion.Header>
             <Accordion.Body>
-                <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" name="email" class="form-control" value={store.getState().email} disabled />
+                <label htmlFor="email" className="form-label">Email</label>
+                <input type="email" id="email" name="email" className="form-control" defaultValue={store.getState().email} disabled />
             </Accordion.Body>
         </Accordion.Item>
     )
