@@ -7,8 +7,8 @@ const userSchema = new Schema({
         unique: true,
         required: true
     },
-    email: { 
-        type: String, 
+    email: {
+        type: String,
         unique: true,
         required: true
     },
@@ -166,6 +166,40 @@ const userSchema = new Schema({
         endDate: {
             type: Date,
             default: null
+        },
+        opt: {
+            opt_receipt: {
+                status: {
+                    type: String,
+                    enum: ["Never_Submitted", "Pending", "Approved", "Rejected"],
+                    default: "Never_Submitted"
+                },
+                message: String
+            },
+            opt_ead: {
+                status: {
+                    type: String,
+                    enum: ["Never_Submitted", "Pending", "Approved", "Rejected"],
+                    default: "Never_Submitted"
+                },
+                message: String
+            },
+            i_983: {
+                status: {
+                    type: String,
+                    enum: ["Never_Submitted", "Pending", "Approved", "Rejected"],
+                    default: "Never_Submitted"
+                },
+                message: String
+            },
+            i_20: {
+                status: {
+                    type: String,
+                    enum: ["Never_Submitted", "Pending", "Approved", "Rejected"],
+                    default: "Never_Submitted"
+                },
+                message: String
+            }
         }
     },
     DriverLicense: {

@@ -3,13 +3,14 @@ import { Container } from 'react-bootstrap';
 
 // Components
 import Navbar from './component/Navbar/Navbar';
+import { setUser } from "./redux/userAction";
 
 // Pages
 import HRAdminHome from './pages/HRAdminHome';
 import EmployeeProfiles from "./pages/EmployeeProfiles/EmployeeProfiles";
 import EmployeeDetail from "./pages/EmployeeProfiles/EmployeeDetail";
-import VisaStatusManagement from "./pages/VisaStatusManagement";
-import HousingManagement from "./pages/HousingManagement";
+import EmployeeVisaStatusManagement from "./pages/EmployeeVisaStatusManagement";
+import EmployeeHousingManagement from "./pages/EmployeeHousingManagement";
 import HiringManagement from './pages/HiringManagement';
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
@@ -27,10 +28,10 @@ function App() {
           <Route index element={<HRAdminHome />} />
           <Route path="profiles" element={<EmployeeProfiles />} />
           <Route path="profiles/:userId" element={<EmployeeDetail />} />
-          <Route path="application" element={<OnboardingApplication />}/>
+          <Route path="application" element={<OnboardingApplication />} />
           <Route path="information" element={<EmployeeProfiles />} />
-          <Route path="visa" element={<VisaStatusManagement />} />
-          <Route path="housing" element={<HousingManagement />} />
+          <Route path="employee-visa" element={<EmployeeVisaStatusManagement />} />
+          <Route path="employee-housing" element={<EmployeeHousingManagement />} />
           <Route path="report/:reportId" element={<Report />} />
           <Route path="hiring" element={<HiringManagement />} />
           <Route path="login" element={<Login />} />
