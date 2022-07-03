@@ -43,24 +43,11 @@ router.post('/register', async (req, res) => {
     if (user || userEmail)
         return res.status(400).json({ msg: 'User already exists' })
 
-    const houses = await House.find({});
     const newUser = new User({
         username: username,
         email: email,
         password: password
     });
-    for (let house of houses) {
-        if (house.residents.length < house.facility.bed) {
-            newUser.house = house._id;
-            await House.findByIdAndUpdate(house._id, {
-                residents: [...house.residents, newUser]
-            });
-            break;
-        }
-    }
-    if (!newUser.house) {
-        return res.status(400).json({ msg: "Houses Full" });
-    }
 
     // hashing the password
     bcrypt.hash(password, Number(process.env.SALT), async (err, hash) => {
@@ -68,7 +55,28 @@ router.post('/register', async (req, res) => {
             return res.status(400).json({ msg: err })
 
         newUser.password = hash
-        const savedUserRes = await newUser.save()
+        let savedUserRes = await newUser.save()
+
+        const houses = await House.find({});
+        for (let house of houses) {
+            if (house.residents.length < house.facility.bed) {
+                savedUserRes = await User.findByIdAndUpdate(savedUserRes._id, {
+                    houseId: house._id
+                });
+
+                await House.findByIdAndUpdate(house._id, {
+                    residents: [...house.residents, {
+                        userId: savedUserRes._id
+                    }]
+                });
+
+                break;
+            }
+        }
+        
+        if (!savedUserRes.house) {
+            return res.status(400).json({ msg: "Houses Full" });
+        }
 
         if (savedUserRes)
             return res.status(200).json({ msg: 'User is successfully saved' })

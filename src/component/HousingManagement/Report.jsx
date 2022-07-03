@@ -96,7 +96,7 @@ export default function Report() {
                     <tr>
                         <td>{report.title}</td>
                         <td>{report.description}</td>
-                        <td>{report.username}</td>
+                        <td>{report.userId ? report.userId.username : ""}</td>
                         <td>{report.date}</td>
                         <td>{report.status}</td>
                     </tr>
@@ -115,9 +115,9 @@ export default function Report() {
                     {
                         comments.map((comment, index) => {
                             return (
-                                <tr>
+                                <tr key={comment}>
                                     {
-                                        store.getState()._id === comment.userId ?
+                                        store.getState()._id === comment.userId._id ?
                                             <td>
                                                 <input id={`comment${index}`} name={`comment${index}`} className={`comment${index}`} defaultValue={comment.description} onChange={onUpdateComment} />
                                             </td> :
@@ -125,7 +125,7 @@ export default function Report() {
                                                 {comment.description}
                                             </td>
                                     }
-                                    <td>{comment.username}</td>
+                                    <td>{comment.userId.username}</td>
                                     <td>{comment.date}</td>
                                 </tr>
                             );
