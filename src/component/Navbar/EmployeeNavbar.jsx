@@ -14,10 +14,10 @@ export default function EmployeeNavbar() {
                 <Nav.Link as={Link} to="/information">Personal Information</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link as={Link} to="/e-visa">Visa Status Management</Nav.Link>
+                <Nav.Link as={Link} to="/employee-visa">Visa Status Management</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link as={Link} to="/housing">Housing</Nav.Link>
+                <Nav.Link as={Link} to="/employee-housing">Housing</Nav.Link>
             </Nav.Item>
             {sessionStorage.getItem('user') ?
                 <Nav.Item>

@@ -51,18 +51,18 @@ export default function Emergency() {
                     userInfo.emergencyContact.map((element, index) => {
                         return (
                             <div>
-                                <label for={`emergencyFirstName${index}`} class="form-label">First Name</label>
-                                <input type="text" id={`emergencyFirstName${index}`} name={`emergencyFirstName${index}`} class="form-control" required value={element.firstName} disabled={store.getState().applicationStatus === "Pending"} />
-                                <label for={`emergencyLastName${index}`} class="form-label">Last Name</label>
-                                <input type="text" id={`emergencyLastName${index}`} name={`emergencyLastName${index}`} class="form-control" required value={element.lastName} disabled={store.getState().applicationStatus === "Pending"} />
-                                <label for={`emergencyMiddleName${index}`} class="form-label">Middle Name</label>
-                                <input type="text" id={`emergencyMiddleName${index}`} name={`emergencyMiddleName${index}`} class="form-control" value={element.middleName} disabled={store.getState().applicationStatus === "Pending"} />
-                                <label for={`emergencyCellPhone${index}`} class="form-label">Cell Phone</label>
-                                <input type="tel" id={`emergencyCellPhone${index}`} name={`emergencyCellPhone${index}`} class="form-control" placeholder="123-4567-890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required value={element.phone} disabled={store.getState().applicationStatus === "Pending"} />
-                                <label for={`emergencyEmail${index}`} class="form-label">Email</label>
-                                <input type="email" id={`emergencyEmail${index}`} name={`emergencyEmail${index}`} class="form-control" required value={element.email} disabled={store.getState().applicationStatus === "Pending"} />
-                                <label for={`emergencyRelationship${index}`} class="form-label">Relationship</label>
-                                <input type="text" id={`emergencyRelationship${index}`} name={`emergencyRelationship${index}`} class="form-control" required value={element.relationship} disabled={store.getState().applicationStatus === "Pending"} />
+                                <label htmlFor={`emergencyFirstName${index}`} className="form-label">First Name</label>
+                                <input type="text" id={`emergencyFirstName${index}`} name={`emergencyFirstName${index}`} className="form-control" required defaultValue={element.firstName} disabled={store.getState().applicationStatus === "Pending"} />
+                                <label htmlFor={`emergencyLastName${index}`} className="form-label">Last Name</label>
+                                <input type="text" id={`emergencyLastName${index}`} name={`emergencyLastName${index}`} className="form-control" required defaultValue={element.lastName} disabled={store.getState().applicationStatus === "Pending"} />
+                                <label htmlFor={`emergencyMiddleName${index}`} className="form-label">Middle Name</label>
+                                <input type="text" id={`emergencyMiddleName${index}`} name={`emergencyMiddleName${index}`} className="form-control" defaultValue={element.middleName} disabled={store.getState().applicationStatus === "Pending"} />
+                                <label htmlFor={`emergencyCellPhone${index}`} className="form-label">Cell Phone</label>
+                                <input type="tel" id={`emergencyCellPhone${index}`} name={`emergencyCellPhone${index}`} className="form-control" placeholder="123-4567-890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required defaultValue={element.phone} disabled={store.getState().applicationStatus === "Pending"} />
+                                <label htmlFor={`emergencyEmail${index}`} className="form-label">Email</label>
+                                <input type="email" id={`emergencyEmail${index}`} name={`emergencyEmail${index}`} className="form-control" required defaultValue={element.email} disabled={store.getState().applicationStatus === "Pending"} />
+                                <label htmlFor={`emergencyRelationship${index}`} className="form-label">Relationship</label>
+                                <input type="text" id={`emergencyRelationship${index}`} name={`emergencyRelationship${index}`} className="form-control" required defaultValue={element.relationship} disabled={store.getState().applicationStatus === "Pending"} />
                             </div>
                         )
                     })}

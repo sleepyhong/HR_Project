@@ -7,10 +7,10 @@ export default function PhoneNumber() {
         <Accordion.Item eventKey="3">
             <Accordion.Header>Phone Number</Accordion.Header>
             <Accordion.Body>
-                <label for="cell" class="form-label">Cell</label>
-                <input type="tel" id="cell" name="cell" class="form-control" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required value={store.getState().phoneNumber.cell} disabled={store.getState().applicationStatus === "Pending"} />
-                <label for="work" class="form-label">Work</label>
-                <input type="tel" id="work" name="work" class="form-control" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={store.getState().phoneNumber.work} disabled={store.getState().applicationStatus === "Pending"} />
+                <label htmlFor="cell" className="form-label">Cell</label>
+                <input type="tel" id="cell" name="cell" className="form-control" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required defaultValue={store.getState().phoneNumber.cell} disabled={store.getState().applicationStatus === "Pending"} />
+                <label htmlFor="work" className="form-label">Work</label>
+                <input type="tel" id="work" name="work" className="form-control" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" defaultValue={store.getState().phoneNumber.work} disabled={store.getState().applicationStatus === "Pending"} />
             </Accordion.Body>
         </Accordion.Item>
     )
