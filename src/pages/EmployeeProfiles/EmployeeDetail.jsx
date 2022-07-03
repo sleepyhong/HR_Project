@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom'
 import { Container, Accordion, Row, Col, Figure, ListGroup, Stack } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
@@ -6,13 +7,15 @@ function EmployeeDetail() {
     const location = useLocation()
     const { user } = location.state
     const { userId } = useParams();
+    const [ statusColor, setStatusColor ] = useState('success')
 
-    console.log(user)
+    // console.log(user)
     return (
         <Container className="my-3">
             <Stack direction="horizontal">
                 <p className="text-dark">{user.firstName + ' ' + user.lastName}</p>
-                <p className="text-warning ms-auto">Status: {user.applicationStatus}</p>
+                <p className="text-danger ms-auto"> Status: {user.applicationStatus}</p>
+                {/* {user.applicationsStatus === "Pending" ? } */}
             </Stack>
             <Accordion defaultActiveKey={['0', '1', '2', '3', '4']} alwaysOpen>
                 <Accordion.Item eventKey="0">

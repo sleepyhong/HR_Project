@@ -7,14 +7,14 @@ export default function Address() {
         <Accordion.Item eventKey="2">
             <Accordion.Header>Current Address</Accordion.Header>
             <Accordion.Body>
-                <label for="building" class="form-label">Building/Apt #</label>
-                <input type="text" id="building" name="building" class="form-control" value={store.getState().address.building} disabled={store.getState().applicationStatus === "Pending"} />
+                <label for="building" className="form-label">Building/Apt #</label>
+                <input type="text" id="building" name="building" className="form-control" value={store.getState().address.building} disabled={store.getState().applicationStatus === "Pending"} />
                 <label for="street" class="form-label">Street</label>
-                <input type="text" id="street" name="street" class="form-control" required value={store.getState().address.street} disabled={store.getState().applicationStatus === "Pending"} />
-                <label for="city" class="form-label">City</label>
-                <input type="text" id="city" name="city" class="form-control" required value={store.getState().address.city} disabled={store.getState().applicationStatus === "Pending"} />
-                <label for="state" class="form-label">State</label>
-                <select id="state" name="state" class="form-control" required value={store.getState().address.state} disabled={store.getState().applicationStatus === "Pending"}>
+                <input type="text" id="street" name="street" className="form-control" required value={store.getState().address.street} disabled={store.getState().applicationStatus === "Pending"} />
+                <label for="city" className="form-label">City</label>
+                <input type="text" id="city" name="city" className="form-control" required value={store.getState().address.city} disabled={store.getState().applicationStatus === "Pending"} />
+                <label for="state" className="form-label">State</label>
+                <select id="state" name="state" className="form-control" required value={store.getState().address.state} disabled={store.getState().applicationStatus === "Pending"}>
                     <option value="AL" select>Alabama</option>
                     <option value="AK">Alaska</option>
                     <option value="AZ">Arizona</option>
@@ -67,7 +67,7 @@ export default function Address() {
                     <option value="WI">Wisconsin</option>
                     <option value="WY">Wyoming</option>
                 </select>
-                <label for="zip" class="form-label">Zip Code</label>
+                <label for="zip" className="form-label">Zip Code</label>
                 <input type="text" id="zip" name="zip" class="form-control" pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$" placeholder="12345" required value={store.getState().address.zip} disabled={store.getState().applicationStatus === "Pending"} />
             </Accordion.Body>
         </Accordion.Item>

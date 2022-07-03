@@ -52,10 +52,8 @@ router.post('/create-register-token', async (req, res) => {
             from: `"HR Project" <${process.env.EMAIL}>`,
             to: userEmail,
             subject: "Link to Register Page",
-            text: `Here is the link to the register page!\nhttp://localhost:3001/register/${tokenString}`
+            text: `This is Hr from BeaCon Fire. Here is the link to the register page!\nhttp://localhost:3000/register/${tokenString}`
         });
-
-
         res.status(200).json(token);
     }
     catch (error) {

@@ -56,9 +56,7 @@ function HouseList({house, houses, setHouses}) {
                             </div>
                         ))}
                 </ListGroup>
-
-
-
+                
             <Button onClick={handleDelete} className="btn-sm mt-3" variant="outline-danger">Delete</Button>
             </Accordion.Body>
         </Accordion.Item>
