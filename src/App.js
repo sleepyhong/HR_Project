@@ -40,6 +40,7 @@ function App() {
           <Route path="employee-housing" element={<EmployeeHousingManagement />} />
           <Route path="report/:reportId" element={<Report />} />
           <Route path="hiring" element={<HiringManagement />} />
+          <Route path="application/:id" element={<ApplicationReviewDetail />} />
           <Route path="login" element={<Login />} />
           <Route path="logout" element={<Logout />} />
           <Route path="register/:token" element={<Register />} />

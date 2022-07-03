@@ -1,4 +1,4 @@
-import { Accordion, ListGroup, Row, Col } from 'react-bootstrap';
+import { Accordion, ListGroup, Row, Col, Stack } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function EmployeeProfile({user}) {
@@ -7,7 +7,10 @@ function EmployeeProfile({user}) {
             <Accordion.Header>Username: {user.username} - Full Name: {user.firstName + ' ' + user.lastName}</Accordion.Header>
             <Accordion.Body>
                 <ListGroup variant="flush">
-                    <p className="text-success">Summary Personal Information</p>
+                    <Stack direction="horizontal">
+                        <p className="text-success">Summary Personal Information</p>
+                        <p className="text-info ms-auto">Status: {user.applicationStatus}</p>
+                    </Stack>
                     <Row>
                         <Col>
                             <ListGroup.Item>First name: {user.firstName}</ListGroup.Item>

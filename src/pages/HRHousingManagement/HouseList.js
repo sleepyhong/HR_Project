@@ -13,7 +13,7 @@ function HouseList({house, houses, setHouses}) {
         })
     }
 
-    console.log(house)
+    // console.log(house)
     return (
         <Accordion.Item key={house._id} eventKey={house._id}>
             <Accordion.Header>{house.address} - id: {house._id}</Accordion.Header>
@@ -56,8 +56,6 @@ function HouseList({house, houses, setHouses}) {
                             </div>
                         ))}
                 </ListGroup>
-
-
 
             <Button onClick={handleDelete} className="btn-sm mt-3" variant="outline-danger">Delete</Button>
             </Accordion.Body>
