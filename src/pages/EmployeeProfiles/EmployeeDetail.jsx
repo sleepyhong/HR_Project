@@ -7,8 +7,7 @@ function EmployeeDetail() {
     const location = useLocation()
     const { user } = location.state
     const { userId } = useParams();
-    const [ statusColor, setStatusColor ] = useState('success')
-
+    // const [ statusColor, setStatusColor ] = useState('success')
     // console.log(user)
     return (
         <Container className="my-3">

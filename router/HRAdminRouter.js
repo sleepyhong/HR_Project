@@ -10,4 +10,7 @@ router.post('/add-house', AdminController.postAddHouse);
 router.get('/houses', AdminController.getHouses);
 router.delete('/delete-house/:houseId', AdminController.deleteHouse);
 
+// Hiring Management
+router.patch('/application/:id', AdminController.updateApplicationStatus)
+
 module.exports = router;
