@@ -12,7 +12,6 @@ function HouseList({ house, houses, setHouses }) {
         })
     }
 
-    console.log(house)
     return (
         <Accordion.Item key={house._id} eventKey={house._id}>
             <Accordion.Header>{house.address} - id: {house._id}</Accordion.Header>
@@ -31,7 +30,7 @@ function HouseList({ house, houses, setHouses }) {
                         <div key={resident._id}>
                             <ListGroup.Item className="mb-3">
                                 <ListGroup variant="flush">
-                                    <ListGroup.Item>Full Name: {resident.userId.firstName + " " + resident.userId.firstName}</ListGroup.Item>
+                                    <ListGroup.Item>Full Name: {resident.userId.firstName + " " + resident.userId.lastName}</ListGroup.Item>
                                     <ListGroup.Item>Cell Phone Name: {resident.userId.phoneNumber.cell}</ListGroup.Item>
                                     <ListGroup.Item>Email: {resident.userId.email}</ListGroup.Item>
                                 </ListGroup>

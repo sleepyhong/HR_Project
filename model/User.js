@@ -187,7 +187,7 @@ const userSchema = new Schema({
             }
         }
     },
-    DriverLicense: {
+    driverLicense: {
         haveLicense: {
             type: Boolean,
             default: null
@@ -207,17 +207,13 @@ const userSchema = new Schema({
         default: 'Never_Submitted'
     },
     rejectedReason: String,
-    house: {
-        houseId: {
-            type: Schema.Types.ObjectId,
-            ref: "House"
-        }
+    houseId: {
+        type: Schema.Types.ObjectId,
+        ref: "House"
     },
-    report: {
-        reportId: {
-            type: Schema.Types.ObjectId,
-            ref:"Report"
-        }
+    reportId: {
+        type: Schema.Types.ObjectId,
+        ref: "Report"
     }
 });
 
