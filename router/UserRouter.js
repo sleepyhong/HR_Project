@@ -91,7 +91,6 @@ router.post('/application', async (req, res) => {
             lastName: req.body.lastName,
             middleName: req.body.middleName,
             preferredName: req.body.preferredName,
-            // profilePicture: req.body.profilePicture,
             address: {
                 building: req.body.building,
                 street: req.body.street,
@@ -206,12 +205,69 @@ router.post('/application/document', async (req, res) => {
 
 router.post('/information', async (req, res) => {
     try {
-        await User.findByIdAndUpdate(req.body.userId, req.body);
+        const user = await User.findById(req.body.userId);
+
+        const inputs = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            middleName: req.body.middleName,
+            preferredName: req.body.preferredName,
+            email: req.body.email,
+            ssn: req.body.ssn,
+            dateOfBirth: req.body.dateOfBirth,
+            gender: req.body.gender,
+            address: {
+                building: req.body.building,
+                street: req.body.street,
+                city: req.body.city,
+                state: req.body.state,
+                zip: req.body.zip
+            },
+            phoneNumber: {
+                cell: req.body.cell,
+                work: req.body.work
+            },
+            visa: {
+                type: req.body.type === "Other" ? req.body.visaTitle : req.body.type,
+                startDate: req.body.startDate,
+                endDate: req.body.endDate,
+                opt: {
+                    opt_receipt: {
+                        status: user.visa.opt.opt_receipt.status
+                    },
+                    opt_ead: {
+                        status: user.visa.opt.opt_ead.status
+                    },
+                    i_983: {
+                        status: user.visa.opt.i_983.status
+                    },
+                    i_20: {
+                        status: user.visa.opt.i_20.status
+                    }
+                }
+            },
+            emergencyContact: []
+        };
+        for (let index = 0; req.body[`emergencyFirstName${index}`]; index++) {
+            inputs.emergencyContact.push({
+                firstName: req.body[`emergencyFirstName${index}`],
+                lastName: req.body[`emergencyLastName${index}`],
+                middleName: req.body[`emergencyMiddleName${index}`],
+                phone: req.body[`emergencyCellPhone${index}`],
+                email: req.body[`emergencyEmail${index}`],
+                relationship: req.body[`emergencyRelationship${index}`]
+            });
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(req.body.userId, inputs, {
+            new: true
+        });
 
         res
             .status(200)
             .json({
-                msg: "User Personal Information Updated"
+                msg: "User Personal Information Updated",
+                user: updatedUser
             });
     }
     catch (error) {

@@ -90,20 +90,6 @@ const userSchema = new Schema({
         type: String,
         enum: ['male', 'female', 'I do not wish to answer']
     },
-    employment: {
-        title: {
-            type: String,
-            default: null
-        },
-        startDate: {
-            type: Date,
-            default: null
-        },
-        endDate: {
-            type: Date,
-            default: null
-        }
-    },
     referenceContact: {
         firstName: {
             type: String,
