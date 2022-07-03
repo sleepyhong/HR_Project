@@ -2,17 +2,33 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const reportSchema = new Schema({
-    title: String,
-    description: String,
-    userId: {
-        _id: Schema.Types.ObjectId,
-        ref: "User"
+    title: {
+        type: String,
+        required: true
     },
-    date: Date,
+    description: {
+        type: String,
+        required: true
+    },
+    userId: {
+        type: Schema.Types.ObjectId,
+        required: true
+    },
+    date: {
+        type: Date,
+        required: true
+    },
     status: {
         type: String,
-        enum: ['Open', 'In Progress', 'Closed']
-    }
+        enum: ['Open', 'In Progress', 'Closed'],
+        required: true,
+        default: "Open"
+    },
+    comments: [{
+        description: String,
+        userId: Schema.Types.ObjectId,
+        date: Date
+    }]
 });
 
 const Report = mongoose.model("Report", reportSchema);

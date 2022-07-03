@@ -12,12 +12,10 @@ const houseSchema = new Schema({
         email: String
     },
     residents: [{
-        _id: Schema.Types.ObjectId,
-        ref: "User"
+        _id: Schema.Types.ObjectId
     }],
     reports: [{
-        _id: Schema.Types.ObjectId,
-        ref: "Report"
+        _id: Schema.Types.ObjectId
     }],
     facility: {
         bed: Number,

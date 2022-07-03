@@ -2,7 +2,8 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const path = require("path");
 const User = require("../model/User");
-const Token = require("../model/RegisterToken");
+const House = require("../model/House");
+const fs = require("fs");
 
 router.post('/login', async function (req, res) {
     try {
@@ -42,11 +43,24 @@ router.post('/register', async (req, res) => {
     if (user || userEmail)
         return res.status(400).json({ msg: 'User already exists' })
 
+    const houses = await House.find({});
     const newUser = new User({
         username: username,
         email: email,
         password: password
-    })
+    });
+    for (let house of houses) {
+        if (house.residents.length < house.facility.bed) {
+            newUser.house = house._id;
+            await House.findByIdAndUpdate(house._id, {
+                residents: [...house.residents, newUser]
+            });
+            break;
+        }
+    }
+    if (!newUser.house) {
+        return res.status(400).json({ msg: "Houses Full" });
+    }
 
     // hashing the password
     bcrypt.hash(password, Number(process.env.SALT), async (err, hash) => {
@@ -90,10 +104,24 @@ router.post('/application', async (req, res) => {
             dateOfBirth: req.body.dateOfBirth,
             gender: req.body.gender,
             citizenship: req.body.citizenship === "yes",
-            visa: req.body.visa === "Other" ? req.body.visaTitle : req.body.visa,
-            employment: {
+            visa: {
+                type: req.body.visa === "Other" ? req.body.visaTitle : req.body.visa,
                 startDate: req.body.startDate,
-                endDate: req.body.endDate
+                endDate: req.body.endDate,
+                opt: {
+                    opt_receipt: {
+                        status: "Pending"
+                    },
+                    opt_ead: {
+                        status: "Never_Submitted"
+                    },
+                    i_983: {
+                        status: "Never_Submitted"
+                    },
+                    i_20: {
+                        status: "Never_Submitted"
+                    }
+                }
             },
             driverLicense: {
                 haveLicense: req.body.driverLicense === "yes",
@@ -126,7 +154,7 @@ router.post('/application', async (req, res) => {
             });
         }
 
-        const user = await User.findByIdAndUpdate(req.body.userId, inputs);
+        const user = await User.findByIdAndUpdate(req.body.userId, inputs, { new: true });
 
         res
             .status(200)
@@ -146,12 +174,12 @@ router.post('/application/document', async (req, res) => {
     try {
         const profilePicture = req.files.profilePicture;
         const octReceipt = req.files.octReceipt;
-        const driverLicenseFile  = req.files.driverLicenseFile;
+        const driverLicenseFile = req.files.driverLicenseFile;
         if (profilePicture) {
             profilePicture.mv(path.resolve(__dirname, `../public/document/profile_pictures/`, `${req.body.userId}.png`));
         }
         if (octReceipt) {
-            octReceipt.mv(path.resolve(__dirname, `../public/document/oct/`, `${req.body.userId}.pdf`));
+            octReceipt.mv(path.resolve(__dirname, `../public/document/opt/opt_receipt/`, `${req.body.userId}.pdf`));
         }
         if (driverLicenseFile) {
             driverLicenseFile.mv(path.resolve(__dirname, `../public/document/driver_license/`, `${req.body.userId}.pdf`));
@@ -159,7 +187,7 @@ router.post('/application/document', async (req, res) => {
 
         res
             .status(200)
-            .json({ msg: "Files Uploaded Successful."})
+            .json({ msg: "Files Uploaded Successful." })
     }
     catch (error) {
         res
@@ -180,6 +208,98 @@ router.post('/information', async (req, res) => {
     }
     catch (error) {
         res
+            .status(400)
+            .json({ msg: error.toString() });
+    }
+});
+
+router.post('/upload-opt-ead', async (req, res) => {
+    try {
+        const optEAD = req.files.opt_ead;
+        const userId = req.body.userId;
+        optEAD.mv(path.resolve(__dirname, `../public/document/opt/opt_ead/`, `${userId}.pdf`));
+
+        const user = await User.findById(userId);
+        const visa = { ...user.visa };
+        visa.opt.opt_ead.status = "Pending";
+
+        const updatedUser = await User.findByIdAndUpdate(userId, {
+            visa: visa
+        }, {
+            new: true
+        })
+
+        return res
+            .status(200)
+            .json({
+                msg: "OPT EAD Uploaded Successfully",
+                user: updatedUser
+            });
+    }
+    catch (error) {
+        return res
+            .status(400)
+            .json({ msg: error.toString() });
+    }
+});
+
+router.post('/upload-i-983', async (req, res) => {
+    try {
+        const i983 = req.files.i_983;
+        const userId = req.body.userId;
+        i983.mv(path.resolve(__dirname, `../public/document/opt/i_983/`, `${userId}.pdf`));
+
+        const user = await User.findById(userId);
+        const visa = { ...user.visa };
+        visa.opt.i_983.status = "Pending";
+
+        const updatedUser = await User.findByIdAndUpdate(userId, {
+            visa: visa
+        }, {
+            new: true
+        })
+
+        return res
+            .status(200)
+            .json({
+                msg: "I 983 Uploaded Successfully",
+                user: updatedUser
+            });
+    }
+    catch (error) {
+        return res
+            .status(400)
+            .json({ msg: error.toString() });
+    }
+});
+
+router.post('/upload-i-20', async (req, res) => {
+    try {
+        const i20 = req.files;
+        const userId = req.body.userId;
+        for (let i = 0; i < Object.keys(i20).length; i++) {
+            i20[`i_20_${i}`].mv(path.resolve(__dirname, `../public/document/opt/i_20/`, `${userId}_${i}.pdf`));
+        }
+
+        const user = await User.findById(userId);
+        const visa = { ...user.visa };
+        visa.opt.i_20.status = "Pending";
+
+        const updatedUser = await User.findByIdAndUpdate(userId, {
+            visa: visa
+        }, {
+            new: true
+        })
+
+        return res
+            .status(200)
+            .json({
+                msg: "I 20 Uploaded Successfully",
+                user: updatedUser
+            });
+    }
+    catch (error) {
+        return res
             .status(400)
             .json({ msg: error.toString() });
     }

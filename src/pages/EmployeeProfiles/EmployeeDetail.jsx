@@ -1,9 +1,11 @@
 import { useLocation } from 'react-router-dom'
-import { Container, Accordion, Row, Col, Figure, ListGroup} from 'react-bootstrap';
+import { Container, Accordion, Row, Col, Figure, ListGroup } from 'react-bootstrap';
+import { useParams } from "react-router-dom";
 
-function EmployeeDetail () {
+function EmployeeDetail() {
     const location = useLocation()
     const { user } = location.state
+    const { userId } = useParams();
 
     console.log(user)
     return (
@@ -20,7 +22,7 @@ function EmployeeDetail () {
                                         width={400}
                                         height={400}
                                         alt="Avatar"
-                                        src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                                        src={`../document/profile_pictures/${userId}.png`}
                                     />
                                     <Figure.Caption>
                                         {user.firstName + ' ' + user.lastName}
@@ -39,7 +41,7 @@ function EmployeeDetail () {
                                 </ListGroup>
                             </Col>
                         </Row>
-                    </Accordion.Body>   
+                    </Accordion.Body>
                 </Accordion.Item>
 
                 <Accordion.Item eventKey="1">
@@ -59,7 +61,7 @@ function EmployeeDetail () {
                                 </ListGroup>
                             </Col>
                         </Row>
-                    </Accordion.Body>   
+                    </Accordion.Body>
                 </Accordion.Item>
 
                 <Accordion.Item eventKey="2">
@@ -69,7 +71,7 @@ function EmployeeDetail () {
                             <ListGroup.Item>Visa Status: {user.visa.type}</ListGroup.Item>
                             <ListGroup.Item>Start Date: {user.visa.startDate} - End Date: {user.visa.endDate}</ListGroup.Item>
                         </ListGroup>
-                    </Accordion.Body>   
+                    </Accordion.Body>
                 </Accordion.Item>
 
 
@@ -92,16 +94,19 @@ function EmployeeDetail () {
                                 </ListGroup>
                             </Col>
                         </Row>
-                    </Accordion.Body>   
+                    </Accordion.Body>
                 </Accordion.Item>
 
                 <Accordion.Item eventKey="4">
                     <Accordion.Header>Documents</Accordion.Header>
                     <Accordion.Body>
-                        <p>i. The list of uploaded documents (driver’s license, work authorization).</p>
-                        <p>ii. They should be able to download each document.</p>
-                        <p>iii. They should be able to open a preview of the document in the browser.</p>
-                    </Accordion.Body>   
+                        <p>
+                            <a href={`../document/driver_license/${userId}.pdf`} download>Driver License</a>
+                        </p>
+                        <p>
+                            <a href={`../document/oct/${userId}.pdf`} download>OCT Receipt</a>
+                        </p>
+                    </Accordion.Body>
                 </Accordion.Item>
 
             </Accordion>

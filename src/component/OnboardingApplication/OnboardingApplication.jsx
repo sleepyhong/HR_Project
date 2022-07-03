@@ -15,7 +15,7 @@ import DriverLicense from "./DriverLicense";
 import Reference from "./Reference";
 import Emergency from "./Emergency";
 
-export default function Navbar() {
+export default function OnboardingApplication() {
     const user = sessionStorage.getItem('user');
     if (!user) {
         window.location.replace("/login");
