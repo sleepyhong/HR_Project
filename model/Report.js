@@ -12,6 +12,7 @@ const reportSchema = new Schema({
     },
     userId: {
         type: Schema.Types.ObjectId,
+        ref: "User",
         required: true
     },
     date: {
@@ -26,7 +27,10 @@ const reportSchema = new Schema({
     },
     comments: [{
         description: String,
-        userId: Schema.Types.ObjectId,
+        userId: {
+            type: Schema.Types.ObjectId,
+            ref: "User"
+        },
         date: Date
     }]
 });

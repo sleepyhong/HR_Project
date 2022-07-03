@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import store from "../../redux/store";
-import { setUser } from "../../redux/userAction";
+// import { setUser } from "../../redux/userAction";
 import Accordion from 'react-bootstrap/Accordion'
 
 export default function ProfilePicture() {

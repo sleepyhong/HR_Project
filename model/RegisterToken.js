@@ -9,7 +9,7 @@ const registerTokenSchema = new Schema({
     },
     dateCreated: {
         type: Date,
-        requried: true
+        required: true
     },
     userEmail: {
         type: String,
