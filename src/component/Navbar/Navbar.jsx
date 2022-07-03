@@ -23,7 +23,8 @@ export default function Navbar() {
 
     return (
         <>
-            {viewState.employeeView ? <EmployeeNavbar /> : <HRNavbar />}
+            {/* {viewState.employeeView ? <EmployeeNavbar /> : <HRNavbar />} */}
+            <HRNavbar />
         </>
     );
 }

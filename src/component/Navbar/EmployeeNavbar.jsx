@@ -1,5 +1,5 @@
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { Nav, Container } from 'react-bootstrap';
+import { Link } from "react-router-dom";
+import { Nav } from 'react-bootstrap';
 
 export default function EmployeeNavbar() {
     return (

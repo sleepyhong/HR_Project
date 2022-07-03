@@ -90,8 +90,6 @@ const userSchema = new Schema({
         type: String,
         enum: ['male', 'female', 'I do not wish to answer']
     },
-    citizenship: Boolean,
-    visa: String,
     employment: {
         title: {
             type: String,
@@ -102,20 +100,6 @@ const userSchema = new Schema({
             default: null
         },
         endDate: {
-            type: Date,
-            default: null
-        }
-    },
-    driverLicense: {
-        haveLicense: {
-            type: Boolean,
-            default: null
-        },
-        number: {
-            type: Number,
-            default: null
-        },
-        expirationDate: {
             type: Date,
             default: null
         }
@@ -154,6 +138,7 @@ const userSchema = new Schema({
         email: String,
         relationship: String
     }],
+    citizenship: Boolean,
     visa: {
         type: {
             type: String,
@@ -208,7 +193,7 @@ const userSchema = new Schema({
             default: null
         },
         number: {
-            type: Number,
+            type: String,
             default: null
         },
         expirationDate: {
@@ -223,8 +208,16 @@ const userSchema = new Schema({
     },
     rejectedReason: String,
     house: {
-        type: Schema.Types.ObjectId,
-        ref: "House"
+        houseId: {
+            type: Schema.Types.ObjectId,
+            ref: "House"
+        }
+    },
+    report: {
+        reportId: {
+            type: Schema.Types.ObjectId,
+            ref:"Report"
+        }
     }
 });
 

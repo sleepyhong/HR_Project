@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom'
-import { Container, Accordion, Row, Col, Figure, ListGroup } from 'react-bootstrap';
+import { Container, Accordion, Row, Col, Figure, ListGroup, Stack } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 
 function EmployeeDetail() {
@@ -10,7 +10,10 @@ function EmployeeDetail() {
     console.log(user)
     return (
         <Container className="my-3">
-            <h4>{user.firstName + ' ' + user.lastName}</h4>
+            <Stack direction="horizontal">
+                <p className="text-dark">{user.firstName + ' ' + user.lastName}</p>
+                <p className="text-warning ms-auto">Status: {user.applicationStatus}</p>
+            </Stack>
             <Accordion defaultActiveKey={['0', '1', '2', '3', '4']} alwaysOpen>
                 <Accordion.Item eventKey="0">
                     <Accordion.Header>Personal Information</Accordion.Header>
@@ -91,6 +94,28 @@ function EmployeeDetail() {
                                     <ListGroup.Item>Email: {user.referenceContact.email}</ListGroup.Item>
                                     <ListGroup.Item>Phone: {user.referenceContact.phone}</ListGroup.Item>
                                     <ListGroup.Item>Relationship: {user.referenceContact.relationship}</ListGroup.Item>
+                                </ListGroup>
+                            </Col>
+                        </Row>
+                    </Accordion.Body>
+                </Accordion.Item>
+
+                <Accordion.Item eventKey="3">
+                    <Accordion.Header>Driver License</Accordion.Header>
+                    <Accordion.Body>
+                        <Row>
+                            <Col>
+                                <ListGroup variant="flush">
+                                    <ListGroup.Item>Have Driver License: {user.DriverLicense.haveLicense ? "Yes" : "No"}</ListGroup.Item>
+                                    <ListGroup.Item>Number: {user.DriverLicense.number}</ListGroup.Item>
+                                    <ListGroup.Item>Middle Name: {user.DriverLicense.expirationDate}</ListGroup.Item>
+                                </ListGroup>
+                            </Col>
+                            <Col>
+                                <ListGroup variant="flush">
+                                    <ListGroup.Item>Brand: {user.car.brand}</ListGroup.Item>
+                                    <ListGroup.Item>Model: {user.car.model}</ListGroup.Item>
+                                    <ListGroup.Item>Color: {user.car.color}</ListGroup.Item>
                                 </ListGroup>
                             </Col>
                         </Row>
