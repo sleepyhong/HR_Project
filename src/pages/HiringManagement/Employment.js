@@ -2,12 +2,12 @@ import { Accordion } from 'react-bootstrap';
 
 function Employment({user}){
 
-    const {title, startDate, endDate} = user.employment;
+    const {type, startDate, endDate} = user.visa;
     return (
         <Accordion.Item eventKey="3">
             <Accordion.Header>Employment</Accordion.Header>
             <Accordion.Body>
-                <p>Title: {title}</p>
+                <p>Title: {type}</p>
                 <p>Start Date: {startDate}</p>
                 <p>End Date: {endDate}</p>
             </Accordion.Body>
