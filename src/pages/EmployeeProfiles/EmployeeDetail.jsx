@@ -41,7 +41,7 @@ function EmployeeDetail() {
                                     <ListGroup.Item>Middle name: {user.middleName ? user.middleName : 'no middle name'}</ListGroup.Item>
                                     <ListGroup.Item>Email: {user.email}</ListGroup.Item>
                                     <ListGroup.Item>SSN: {user.ssn}</ListGroup.Item>
-                                    <ListGroup.Item>Date of Birth: {user.dateOfBirth}</ListGroup.Item>
+                                    <ListGroup.Item>Date of Birth: {user.dateOfBirth ? user.dateOfBirth.substr(0,10) : ""}</ListGroup.Item>
                                     <ListGroup.Item>Gender: {user.gender}</ListGroup.Item>
                                 </ListGroup>
                             </Col>
@@ -74,7 +74,7 @@ function EmployeeDetail() {
                     <Accordion.Body>
                         <ListGroup variant="flush">
                             <ListGroup.Item>Visa Status: {user.visa.type}</ListGroup.Item>
-                            <ListGroup.Item>Start Date: {user.visa.startDate} - End Date: {user.visa.endDate}</ListGroup.Item>
+                            <ListGroup.Item>Start Date: {user.visa.startDate ? user.visa.startDate.substr(0,10) : ""} - End Date: {user.visa.endDate ? user.visa.endDate.substr(0,10) : ""}</ListGroup.Item>
                         </ListGroup>
                     </Accordion.Body>
                 </Accordion.Item>
@@ -110,7 +110,7 @@ function EmployeeDetail() {
                                 <ListGroup variant="flush">
                                     <ListGroup.Item>Have Driver License: {user.driverLicense.haveLicense ? "Yes" : "No"}</ListGroup.Item>
                                     <ListGroup.Item>Number: {user.driverLicense.number}</ListGroup.Item>
-                                    <ListGroup.Item>Middle Name: {user.driverLicense.expirationDate}</ListGroup.Item>
+                                    <ListGroup.Item>Expiration Date: {user.driverLicense.expirationDate ? user.driverLicense.expirationDate.substr(0,10) : ""}</ListGroup.Item>
                                 </ListGroup>
                             </Col>
                             <Col>

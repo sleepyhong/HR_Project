@@ -40,7 +40,7 @@ function Name({user}){
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Date of Birth</Form.Label>
-                                    <Form.Control text="text" value={user.dateOfBirth} readOnly/>
+                                    <Form.Control text="text" value={user.dateOfBirth ? user.dateOfBirth.substr(0,10) : ""} readOnly/>
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Preferred Name</Form.Label>

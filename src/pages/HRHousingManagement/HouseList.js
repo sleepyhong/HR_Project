@@ -49,7 +49,7 @@ function HouseList({house, houses, setHouses}) {
                                         <ListGroup.Item>Title: {report.reportId.title}</ListGroup.Item>
                                         <ListGroup.Item>Description: {report.reportId.description}</ListGroup.Item>
                                         <ListGroup.Item>Status: {report.reportId.status}</ListGroup.Item>
-                                        <ListGroup.Item>Date: {report.reportId.date}</ListGroup.Item>
+                                        <ListGroup.Item>Date: {report.reportId.date ? report.reportId.date.substr(0,10) : ""}</ListGroup.Item>
                                         <ListGroup.Item>Comments: {report.reportId.comments.map(comment => (<li key={comment._id}>{comment.description}</li>))}</ListGroup.Item>
                                     </ListGroup>
                                 </ListGroup.Item>

@@ -11,7 +11,7 @@ function DiverLicense({user}){
             <Accordion.Body>
                 <p>Driver License: {haveLicense ? "YES" : "NO"}</p>
                 <p>Number: {number}</p>
-                <p>Expiration Date: {expirationDate ? expirationDate.substr() : ""}</p>
+                <p>Expiration Date: {expirationDate ? expirationDate.substr(0,10) : ""}</p>
                 <p>Car: {brand} {model} {color}</p>
             </Accordion.Body>
         </Accordion.Item>
