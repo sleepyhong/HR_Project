@@ -58,7 +58,7 @@ export default function Emergency() {
                                 <label htmlFor={`emergencyMiddleName${index}`} className="form-label">Middle Name</label>
                                 <input type="text" id={`emergencyMiddleName${index}`} name={`emergencyMiddleName${index}`} className="form-control" defaultValue={element.middleName} disabled={store.getState().applicationStatus === "Pending"} />
                                 <label htmlFor={`emergencyCellPhone${index}`} className="form-label">Cell Phone</label>
-                                <input type="tel" id={`emergencyCellPhone${index}`} name={`emergencyCellPhone${index}`} className="form-control" placeholder="123-4567-890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required defaultValue={element.phone} disabled={store.getState().applicationStatus === "Pending"} />
+                                <input type="tel" id={`emergencyCellPhone${index}`} name={`emergencyCellPhone${index}`} className="form-control" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required defaultValue={element.phone.substr(0, 12)} disabled={store.getState().applicationStatus === "Pending"} />
                                 <label htmlFor={`emergencyEmail${index}`} className="form-label">Email</label>
                                 <input type="email" id={`emergencyEmail${index}`} name={`emergencyEmail${index}`} className="form-control" required defaultValue={element.email} disabled={store.getState().applicationStatus === "Pending"} />
                                 <label htmlFor={`emergencyRelationship${index}`} className="form-label">Relationship</label>

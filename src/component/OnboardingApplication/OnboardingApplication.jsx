@@ -22,6 +22,7 @@ export default function OnboardingApplication() {
     }
     else {
         setUser(JSON.parse(user));
+        console.log(store.getState())
     }
 
     const [userInfo, setUserInfo] = useState({
@@ -58,6 +59,7 @@ export default function OnboardingApplication() {
         axios
             .post("/application", inputs)
             .then((result) => {
+                sessionStorage.setItem("user", JSON.stringify(result.data.user));
                 setUser(result.data.user);
                 setUserInfo({
                     ...store.getState(),
@@ -74,7 +76,7 @@ export default function OnboardingApplication() {
             });
     }
 
-    switch (userInfo.visa.opt.opt_receipt.status) {
+    switch (userInfo.applicationStatus) {
         case "Never_Submitted":
             return (
                 <Accordion defaultActiveKey="0" alwaysOpen>
@@ -122,6 +124,23 @@ export default function OnboardingApplication() {
                 <>
                     <h3>Your application has been rejected.</h3>
                     <p>Reason: {userInfo.rejectedReason}</p>
+                    <Accordion defaultActiveKey="0" alwaysOpen>
+                        <form action="/application" method="POST" onSubmit={submitApplication}>
+                            <Name />
+                            <ProfilePicture />
+                            <Address />
+                            <PhoneNumber />
+                            <Car />
+                            <Email />
+                            <Personal />
+                            <Citizenship />
+                            <DriverLicense />
+                            <Reference />
+                            <Emergency />
+                            <button type="submit">Submit</button>
+                        </form>
+                        <p>{userInfo.msg}</p>
+                    </Accordion>
                 </>
             );
         case "Approved":

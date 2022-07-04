@@ -161,13 +161,13 @@ router.post('/application', async (req, res) => {
             });
         }
 
-        const user = await User.findByIdAndUpdate(req.body.userId, inputs, { new: true });
+        const updatedUser = await User.findByIdAndUpdate(req.body.userId, inputs, { new: true });
 
         res
             .status(200)
             .json({
                 msg: "Updated Application Information Successfully",
-                user: user
+                user: updatedUser
             });
     }
     catch (error) {

@@ -54,17 +54,17 @@ export default function Reference() {
                         return (
                             <div>
                                 <label htmlFor="referenceFirstName" className="form-label">First Name</label>
-                                <input type="text" id="referenceFirstName" name="referenceFirstName" className="form-control" required />
+                                <input type="text" id="referenceFirstName" name="referenceFirstName" className="form-control" defaultValue={element.firstName} required />
                                 <label htmlFor="referenceLastName" className="form-label">Last Name</label>
-                                <input type="text" id="referenceLastName" name="referenceLastName" className="form-control" required />
+                                <input type="text" id="referenceLastName" name="referenceLastName" className="form-control" defaultValue={element.lastName} required />
                                 <label htmlFor="referenceMiddleName" className="form-label">Middle Name</label>
-                                <input type="text" id="referenceMiddleName" name="referenceMiddleName" className="form-control" />
+                                <input type="text" id="referenceMiddleName" name="referenceMiddleName" className="form-control" defaultValue={element.middleName} />
                                 <label htmlFor="referenceCellPhone" className="form-label">Cell Phone</label>
-                                <input type="tel" id="referenceCellPhone" name="referenceCellPhone" className="form-control" placeholder="123-4567-890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+                                <input type="tel" id="referenceCellPhone" name="referenceCellPhone" className="form-control" defaultValue={element.phone.substr(0, 12)} placeholder="123-4567-890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
                                 <label htmlFor="referenceEmail" className="form-label">Email</label>
-                                <input type="email" id="referenceEmail" name="referenceEmail" className="form-control" required />
+                                <input type="email" id="referenceEmail" name="referenceEmail" className="form-control" defaultValue={element.email} required />
                                 <label htmlFor="referenceRelationship" className="form-label">Relationship</label>
-                                <input type="text" id="referenceRelationship" name="referenceRelationship" className="form-control" required />
+                                <input type="text" id="referenceRelationship" name="referenceRelationship" className="form-control" defaultValue={element.relationship} required />
                             </div>
                         )
                     })}
