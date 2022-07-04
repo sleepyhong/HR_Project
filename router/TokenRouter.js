@@ -35,7 +35,7 @@ router.post('/create-register-token', async (req, res) => {
             userEmail: userEmail
         });
 
-        const testAccount = await nodemailer.createTestAccount();
+        // const testAccount = await nodemailer.createTestAccount();
         const transporter = nodemailer.createTransport({
             host: 'smtp.outlook.com',
             port: 587,
@@ -48,14 +48,12 @@ router.post('/create-register-token', async (req, res) => {
                 rejectUnauthorized: false
             }
         });
-        const info = await transporter.sendMail({
+        await transporter.sendMail({
             from: `"HR Project" <${process.env.EMAIL}>`,
             to: userEmail,
             subject: "Link to Register Page",
-            text: `Here is the link to the register page!\nhttp://localhost:3001/register/${tokenString}`
+            text: `This is Hr from BeaCon Fire. Here is the link to the register page!\nhttp://localhost:3000/register/${tokenString}`
         });
-
-
         res.status(200).json(token);
     }
     catch (error) {

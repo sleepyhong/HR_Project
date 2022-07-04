@@ -72,3 +72,16 @@ exports.deleteHouse = (req, res, next) => {
         })
         .catch(err => console.log(err));
 };
+
+// todo: HR update Application Status
+exports.updateApplicationStatus = (req, res, next) => {
+    User.findByIdAndUpdate(req.params.id, req.body, { new: true }).then((application) => {
+        if(!application){
+            return res.status(404).send()
+        }
+        res.send(application)
+    })
+    .catch(err => {
+        res.status(500).send(err)
+    })
+}
