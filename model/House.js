@@ -12,23 +12,40 @@ const houseSchema = new Schema({
         email: String
     },
     residents: [{
-        _id: Schema.Types.ObjectId,
-        ref: "User"
+        userId: {
+            type: Schema.Types.ObjectId,
+            ref: "User"
+        }
     }],
     reports: [{
-        _id: Schema.Types.ObjectId,
-        ref: "Report"
+        reportId: {
+            type: Schema.Types.ObjectId,
+            ref: "Report"
+        }
     }],
     facility: {
-        bed: Number,
-        mattress: Number,
-        table: Number,
-        chair: Number,
-        bathroom: Number
+        bed: {
+            type: Number,
+            default: null
+        },
+        mattress: {
+            type: Number, 
+            default: null
+        },
+        table: {
+            type: Number,
+            default: null
+        },
+        chair: {
+            type: Number,
+            default: null
+        },
+        bathroom: {
+            type: Number,
+            default: null
+        }
     }
 });
-
-// house?
 
 const House = mongoose.model("House", houseSchema);
 module.exports = House;

@@ -53,18 +53,18 @@ export default function Reference() {
                     userInfo.reference.map((element) => {
                         return (
                             <div>
-                                <label for="referenceFirstName" class="form-label">First Name</label>
-                                <input type="text" id="referenceFirstName" name="referenceFirstName" class="form-control" required />
-                                <label for="referenceLastName" class="form-label">Last Name</label>
-                                <input type="text" id="referenceLastName" name="referenceLastName" class="form-control" required />
-                                <label for="referenceMiddleName" class="form-label">Middle Name</label>
-                                <input type="text" id="referenceMiddleName" name="referenceMiddleName" class="form-control" />
-                                <label for="referenceCellPhone" class="form-label">Cell Phone</label>
-                                <input type="tel" id="referenceCellPhone" name="referenceCellPhone" class="form-control" placeholder="123-4567-890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
-                                <label for="referenceEmail" class="form-label">Email</label>
-                                <input type="email" id="referenceEmail" name="referenceEmail" class="form-control" required />
-                                <label for="referenceRelationship" class="form-label">Relationship</label>
-                                <input type="text" id="referenceRelationship" name="referenceRelationship" class="form-control" required />
+                                <label htmlFor="referenceFirstName" className="form-label">First Name</label>
+                                <input type="text" id="referenceFirstName" name="referenceFirstName" className="form-control" required />
+                                <label htmlFor="referenceLastName" className="form-label">Last Name</label>
+                                <input type="text" id="referenceLastName" name="referenceLastName" className="form-control" required />
+                                <label htmlFor="referenceMiddleName" className="form-label">Middle Name</label>
+                                <input type="text" id="referenceMiddleName" name="referenceMiddleName" className="form-control" />
+                                <label htmlFor="referenceCellPhone" className="form-label">Cell Phone</label>
+                                <input type="tel" id="referenceCellPhone" name="referenceCellPhone" className="form-control" placeholder="123-4567-890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+                                <label htmlFor="referenceEmail" className="form-label">Email</label>
+                                <input type="email" id="referenceEmail" name="referenceEmail" className="form-control" required />
+                                <label htmlFor="referenceRelationship" className="form-label">Relationship</label>
+                                <input type="text" id="referenceRelationship" name="referenceRelationship" className="form-control" required />
                             </div>
                         )
                     })}

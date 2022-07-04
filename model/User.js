@@ -7,8 +7,8 @@ const userSchema = new Schema({
         unique: true,
         required: true
     },
-    email: { 
-        type: String, 
+    email: {
+        type: String,
         unique: true,
         required: true
     },
@@ -22,11 +22,22 @@ const userSchema = new Schema({
         default: "employee",
         required: true
     },
-    firstName: String,
-    lastName: String,
-    middleName: String,
-    preferredName: String,
-    profilePicture: String,
+    firstName: {
+        type: String,
+        default: ""
+    },
+    lastName: {
+        type: String,
+        default: ""
+    },
+    middleName: {
+        type: String,
+        default: ""
+    },
+    preferredName: {
+        type: String,
+        default: ""
+    },
     address: {
         building: {
             type: String,
@@ -79,8 +90,6 @@ const userSchema = new Schema({
         type: String,
         enum: ['male', 'female', 'I do not wish to answer']
     },
-    citizenship: Boolean,
-    visa: String,
     employment: {
         title: {
             type: String,
@@ -91,20 +100,6 @@ const userSchema = new Schema({
             default: null
         },
         endDate: {
-            type: Date,
-            default: null
-        }
-    },
-    driverLicense: {
-        haveLicense: {
-            type: Boolean,
-            default: null
-        },
-        number: {
-            type: Number,
-            default: null
-        },
-        expirationDate: {
             type: Date,
             default: null
         }
@@ -143,12 +138,54 @@ const userSchema = new Schema({
         email: String,
         relationship: String
     }],
+    citizenship: Boolean,
     visa: {
         type: {
-            type: String
+            type: String,
+            default: null
         },
-        startDate: Date,
-        endDate: Date
+        startDate: {
+            type: Date,
+            default: null
+        },
+        endDate: {
+            type: Date,
+            default: null
+        },
+        opt: {
+            opt_receipt: {
+                status: {
+                    type: String,
+                    enum: ["Never_Submitted", "Pending", "Approved", "Rejected"],
+                    default: "Never_Submitted"
+                },
+                message: String
+            },
+            opt_ead: {
+                status: {
+                    type: String,
+                    enum: ["Never_Submitted", "Pending", "Approved", "Rejected"],
+                    default: "Never_Submitted"
+                },
+                message: String
+            },
+            i_983: {
+                status: {
+                    type: String,
+                    enum: ["Never_Submitted", "Pending", "Approved", "Rejected"],
+                    default: "Never_Submitted"
+                },
+                message: String
+            },
+            i_20: {
+                status: {
+                    type: String,
+                    enum: ["Never_Submitted", "Pending", "Approved", "Rejected"],
+                    default: "Never_Submitted"
+                },
+                message: String
+            }
+        }
     },
     DriverLicense: {
         haveLicense: {
@@ -156,7 +193,7 @@ const userSchema = new Schema({
             default: null
         },
         number: {
-            type: Number,
+            type: String,
             default: null
         },
         expirationDate: {
@@ -169,7 +206,19 @@ const userSchema = new Schema({
         enum: ['Pending', 'Approved', 'Rejected', 'Never_Submitted'],
         default: 'Never_Submitted'
     },
-    rejectedReason: String
+    rejectedReason: String,
+    house: {
+        houseId: {
+            type: Schema.Types.ObjectId,
+            ref: "House"
+        }
+    },
+    report: {
+        reportId: {
+            type: Schema.Types.ObjectId,
+            ref:"Report"
+        }
+    }
 });
 
 const User = mongoose.model("User", userSchema);
