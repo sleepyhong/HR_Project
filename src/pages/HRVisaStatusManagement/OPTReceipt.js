@@ -48,7 +48,6 @@ function OPTReceipt({ user, setShowOPTCard }) {
         }
         SetOPTReceiptStatus("")
         SetOPTRejectMessage("")
-
     }
 
     return (

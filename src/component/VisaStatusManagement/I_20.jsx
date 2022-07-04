@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Accordion from 'react-bootstrap/Accordion';
-import axios from "axios";
 import store from "../../redux/store";
 
 export default function I_20() {
