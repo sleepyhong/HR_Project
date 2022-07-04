@@ -3,6 +3,7 @@ import { Accordion, Button, Stack } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import HouseList from './HouseList';
 import { setUser } from "../../redux/userAction";
+import Navbar from '../../component/Navbar/Navbar';
 
 const HRHousingManagement = () => {
 
@@ -26,6 +27,7 @@ const HRHousingManagement = () => {
 
     return (
         <div>
+            <Navbar />
             <h3 className="text-center mt-3">Housing Management</h3>
             <Stack direction="horizontal">
                 <p className="text-secondary">Number of houses: {houses.length}</p>

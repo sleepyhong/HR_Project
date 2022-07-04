@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import  { Accordion, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { setUser } from "../../redux/userAction";
+import Navbar from '../../component/Navbar/Navbar';
 
 const HRVisaStatusManagement = () => {
 
@@ -23,7 +24,9 @@ const HRVisaStatusManagement = () => {
     }, [])
 
     return (
-        <div className="mt-3">
+        <>
+            <Navbar />
+            <div className="mt-3">
             <h3>Visa Status Management</h3>
                 {users.map(user => (
                     <Accordion key={user._id}>
@@ -41,6 +44,8 @@ const HRVisaStatusManagement = () => {
                     </Accordion>
                 ))}
         </div>
+        </>
+       
     );
 };
 

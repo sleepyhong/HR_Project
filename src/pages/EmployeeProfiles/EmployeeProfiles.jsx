@@ -3,6 +3,7 @@ import { Accordion, Stack } from 'react-bootstrap';
 import EmployeeProfile from './EmployeeProfile';
 import Search from '../../component/Search/Search';
 import { setUser } from "../../redux/userAction";
+import Navbar from '../../component/Navbar/Navbar';
 
 const EmployeeProfiles = () => {
 
@@ -38,18 +39,22 @@ const EmployeeProfiles = () => {
         ))
 
     return (
-        <div>
-            <h3 className="text-center mt-3">Employee Profiles</h3>
+        <>
+            <Navbar />
+            <div>
+                <h3 className="text-center mt-3">Employee Profiles</h3>
 
-            <Stack direction="horizontal">
-                <p className="text-secondary">Number of users: {users.length}</p>
-                <p className="text-secondary ms-auto">Users are ordered alphabetically by last names</p>
-            </Stack>
-            <Search search={search} setSearch={setSearch} />
-            <Accordion>
-                {displayedUsers.map(user => <EmployeeProfile key={user._id} user={user} /> )}
-            </Accordion>
-        </div>
+                <Stack direction="horizontal">
+                    <p className="text-secondary">Number of users: {users.length}</p>
+                    <p className="text-secondary ms-auto">Users are ordered alphabetically by last names</p>
+                </Stack>
+                <Search search={search} setSearch={setSearch} />
+                <Accordion>
+                    {displayedUsers.map(user => <EmployeeProfile key={user._id} user={user} />)}
+                </Accordion>
+            </div>
+        </>
+
     )
 };
 

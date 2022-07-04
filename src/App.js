@@ -1,10 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Container } from 'react-bootstrap';
 
-// Components
-import Navbar from './component/Navbar/Navbar';
-import { setUser } from "./redux/userAction";
-
 // Pages
 import EmployeeProfiles from "./pages/EmployeeProfiles/EmployeeProfiles";
 import EmployeeDetail from "./pages/EmployeeProfiles/EmployeeDetail";
@@ -21,13 +17,17 @@ import Register from "./pages/Register";
 import OnboardingApplication from "./pages/OnboardingApplication";
 import Report from "./pages/Report";
 import PersonalInformation from "./pages/PersonalInformation";
-import ApplicationReviewDetail from "./pages/HiringManagement/ApplicationReviewDetail"
+import ApplicationReviewDetail from "./pages/HiringManagement/ApplicationReviewDetail";
+import NotFound from "./pages/NotFound";
 import './App.css';
 
 function App() {
+  if (!sessionStorage.getItem("user") && window.location.href !== "http://localhost:3001/login") {
+    window.location.replace("/login");
+  }
+
   return (
     <Container>
-      <Navbar />
       <Routes>
         <Route path="/">
           <Route path="application" element={<OnboardingApplication />} />
@@ -48,6 +48,8 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="logout" element={<Logout />} />
           <Route path="register/:token" element={<Register />} />
+
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </Container>
