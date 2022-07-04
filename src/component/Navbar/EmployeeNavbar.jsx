@@ -5,9 +5,6 @@ export default function EmployeeNavbar() {
     return (
         <Nav bg="premium" fill variant="tabs" defaultActiveKey="/">
             <Nav.Item>
-                <Nav.Link as={Link} to="/">Home</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
                 <Nav.Link as={Link} to="/application">Onboarding Application</Nav.Link>
             </Nav.Item>
             <Nav.Item>

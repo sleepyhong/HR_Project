@@ -74,7 +74,7 @@ export default function OnboardingApplication() {
             });
     }
 
-    switch (userInfo.applicationStatus) {
+    switch (userInfo.visa.opt.opt_receipt.status) {
         case "Never_Submitted":
             return (
                 <Accordion defaultActiveKey="0" alwaysOpen>

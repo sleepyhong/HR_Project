@@ -46,13 +46,13 @@ export default function FacilityReport() {
                         <Accordion.Header>Creating a Facility Report</Accordion.Header>
                         <Accordion.Body>
                             <form action="/report" method="POST" onSubmit={onReportSubmit}>
-                                <div class="form-outline mb-4">
-                                    <label for="title" class="form-label">Title</label>
-                                    <input type="text" id="title" name="title" class="form-control" />
+                                <div className="form-outline mb-4">
+                                    <label htmlFor="title" className="form-label">Title</label>
+                                    <input type="text" id="title" name="title" className="form-control" />
                                 </div>
-                                <div class="form-outline mb-4">
-                                    <label for="description" class="form-label">Description</label>
-                                    <textarea id="description" name="description" class="form-control" />
+                                <div className="form-outline mb-4">
+                                    <label htmlFor="description" className="form-label">Description</label>
+                                    <textarea id="description" name="description" className="form-control" />
                                 </div>
                                 <button type="submit">Report</button>
                             </form>
@@ -61,7 +61,7 @@ export default function FacilityReport() {
                     <Accordion.Item eventKey="1">
                         <Accordion.Header>Previous Reports</Accordion.Header>
                         <Accordion.Body>
-                            <table class="table table-bordered">
+                            <table className="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Title</th>
@@ -75,7 +75,7 @@ export default function FacilityReport() {
                                     {
                                         reports.map((report) => {
                                             return (
-                                                <tr>
+                                                <tr key={report}>
                                                     <td><a href={`/report/${report._id}`}>{report.title}</a></td>
                                                     <td>{report.description}</td>
                                                     <td>{report.username}</td>

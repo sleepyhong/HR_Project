@@ -20,7 +20,7 @@ import Logout from "./pages/Logout";
 import Register from "./pages/Register";
 import OnboardingApplication from "./pages/OnboardingApplication";
 import Report from "./pages/Report";
-// import PersonalInformation from "./pages/PersonalInformation";
+import PersonalInformation from "./pages/PersonalInformation";
 import ApplicationReviewDetail from "./pages/HiringManagement/ApplicationReviewDetail"
 import './App.css';
 
@@ -31,16 +31,14 @@ function App() {
       <Routes>
         <Route path="/">
           <Route path="application" element={<OnboardingApplication />} />
-          {/* <Route path="information" element={<PersonalInformation />} /> */}
+          <Route path="information" element={<PersonalInformation />} />
           <Route path="employee-visa" element={<EmployeeVisaStatusManagement />} />
           <Route path="employee-housing" element={<EmployeeHousingManagement />} />
 
           <Route path="profiles" element={<EmployeeProfiles />} />
           <Route path="profiles/:userId" element={<EmployeeDetail />} />
-
           <Route path="visa" element={<HRVisaStatusManagement />} />
           <Route path="visa/:userId" element={<VisaStatusReview />} />
-          
           <Route path="hr-housing" element={<HRHousingManagement />} />
           <Route path="housing/new" element={<NewHouseForm />} />
           <Route path="report/:reportId" element={<Report />} />

@@ -2,7 +2,7 @@ import { Accordion } from 'react-bootstrap';
 
 function DiverLicense({user}){
 
-    const {haveLicense,  number, expirationDate} = user.DriverLicense;
+    const {haveLicense,  number, expirationDate} = user.driverLicense;
     const {brand, model, color} = user.car;
 
     return (

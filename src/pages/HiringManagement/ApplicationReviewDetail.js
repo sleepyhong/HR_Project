@@ -11,43 +11,44 @@ import EmergencyContact from './EmergencyContact';
 import Documents from './Documents';
 import ApplicationStatus from './ApplicationStatus';
 
-function ApplicationReviewDetail(){
+function ApplicationReviewDetail() {
     const navigate = useNavigate();
     const location = useLocation()
     const { user } = location.state
 
-    const [applicationStatus, setApplicationStatus] = useState(user.applicationStatus)
+    const [applicationStatus, setApplicationStatus] = useState(user.visa.opt.opt_receipt.status)
     const [rejectedReason, setRejectedReason] = useState("")
 
     const [showRejectedForm, setShowRejectedForm] = useState(false)
 
-    function handleSubmit(e){
+    function handleSubmit(e) {
         e.preventDefault();
-        // console.log(applicationStatus)
 
-        if(applicationStatus === "Rejected"){
-            const updateApplication = {
-                applicationStatus: applicationStatus,
-                rejectedReason: rejectedReason
+        if (applicationStatus === "Rejected") {
+            const updateApplication = user;
+            updateApplication.visa.opt.opt_receipt = {
+                status: applicationStatus,
+                message: rejectedReason
             }
             fetch(`/application/${user._id}`, {
                 method: "PATCH",
-                headers: {"Content-Type": "application/json"},
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(updateApplication)
             })
-            .then(setShowRejectedForm(!showRejectedForm))
-            .then(navigate(-1))
+                .then(setShowRejectedForm(!showRejectedForm))
+                .then(navigate(-1))
 
         } else {
-            const updateApplication = {
-                applicationStatus: applicationStatus,
+            const updateApplication = user;
+            updateApplication.visa.opt.opt_receipt = {
+                status: applicationStatus
             }
             fetch(`/application/${user._id}`, {
                 method: "PATCH",
-                headers: {"Content-Type": "application/json"},
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(updateApplication)
             })
-            .then(navigate(-1))
+                .then(navigate(-1))
         }
         setApplicationStatus("")
         setRejectedReason("")
@@ -61,19 +62,20 @@ function ApplicationReviewDetail(){
             </Stack>
             <h3 className="text-dark text-center">Application: {user.firstName + ' ' + user.lastName}</h3>
             <Accordion>
-                <Name user={user}/>
-                <Employment user={user}/>
-                <Citizenship user={user}/>
-                <AddressAndContactInfo user={user}/>
+                <Name user={user} />
+                <Employment user={user} />
+                <Citizenship user={user} />
+                <AddressAndContactInfo user={user} />
                 <DiverLicense user={user} />
                 <ReferenceContact user={user} />
                 <EmergencyContact user={user} />
-                <Documents user={user}/>
-                <ApplicationStatus user={user}/>
+                <Documents user={user} />
+                <ApplicationStatus user={user} />
             </Accordion>
             <Form onSubmit={handleSubmit} className="mt-3">
                 <Form.Control as="select" value={applicationStatus} onChange={e => setApplicationStatus(e.target.value)}>
-                    <option>Status: {applicationStatus}</option>
+                    <option value="Never_Submitted">Never Submitted</option>
+                    <option value="Pending">Pending</option>
                     <option value="Approved">Approved</option>
                     <option value="Rejected">Rejected</option>
                 </Form.Control>
@@ -83,7 +85,7 @@ function ApplicationReviewDetail(){
                         <Form.Label>Rejected Reason</Form.Label>
                         <Form.Control value={rejectedReason} onChange={e => setRejectedReason(e.target.value)} as="textarea" rows={3} />
                     </Form.Group>
-                    
+
                 ) : null}
 
                 <Button type="submit" className="btn btn-sm mt-3" variant="outline-dark">Submit</Button>
