@@ -90,20 +90,6 @@ const userSchema = new Schema({
         type: String,
         enum: ['male', 'female', 'I do not wish to answer']
     },
-    employment: {
-        title: {
-            type: String,
-            default: null
-        },
-        startDate: {
-            type: Date,
-            default: null
-        },
-        endDate: {
-            type: Date,
-            default: null
-        }
-    },
     referenceContact: {
         firstName: {
             type: String,
@@ -187,7 +173,7 @@ const userSchema = new Schema({
             }
         }
     },
-    DriverLicense: {
+    driverLicense: {
         haveLicense: {
             type: Boolean,
             default: null
@@ -207,17 +193,13 @@ const userSchema = new Schema({
         default: 'Never_Submitted'
     },
     rejectedReason: String,
-    house: {
-        houseId: {
-            type: Schema.Types.ObjectId,
-            ref: "House"
-        }
+    houseId: {
+        type: Schema.Types.ObjectId,
+        ref: "House"
     },
-    report: {
-        reportId: {
-            type: Schema.Types.ObjectId,
-            ref:"Report"
-        }
+    reportId: {
+        type: Schema.Types.ObjectId,
+        ref: "Report"
     }
 });
 

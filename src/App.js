@@ -11,7 +11,6 @@ import EmployeeProfiles from "./pages/EmployeeProfiles/EmployeeProfiles";
 import EmployeeDetail from "./pages/EmployeeProfiles/EmployeeDetail";
 import HRHousingManagement from "./pages/HRHousingManagement/HRHousingManagement";
 import NewHouseForm from "./pages/HRHousingManagement/NewHouseForm";
-import VisaStatusManagement from "./pages/VisaStatusManagement";
 import EmployeeVisaStatusManagement from "./pages/EmployeeVisaStatusManagement";
 import EmployeeHousingManagement from "./pages/EmployeeHousingManagement";
 import HiringManagement from './pages/HiringManagement';
@@ -20,6 +19,7 @@ import Logout from "./pages/Logout";
 import Register from "./pages/Register";
 import OnboardingApplication from "./pages/OnboardingApplication";
 import Report from "./pages/Report";
+import PersonalInformation from "./pages/PersonalInformation";
 import './App.css';
 
 function App() {
@@ -32,8 +32,7 @@ function App() {
           <Route path="profiles" element={<EmployeeProfiles />} />
           <Route path="profiles/:userId" element={<EmployeeDetail />} />
           <Route path="application" element={<OnboardingApplication />} />
-          <Route path="information" element={<EmployeeProfiles />} />
-          <Route path="visa" element={<VisaStatusManagement />} />
+          <Route path="information" element={<PersonalInformation />} />
           <Route path="hr-housing" element={<HRHousingManagement />} />
           <Route path="housing/new" element={<NewHouseForm />} />
           <Route path="employee-visa" element={<EmployeeVisaStatusManagement />} />

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 function EmployeeDetail() {
     const location = useLocation()
-    const { user } = location.state
+    const { user } = location.state;
     const { userId } = useParams();
     // const [ statusColor, setStatusColor ] = useState('success')
     // console.log(user)
@@ -108,9 +108,9 @@ function EmployeeDetail() {
                         <Row>
                             <Col>
                                 <ListGroup variant="flush">
-                                    <ListGroup.Item>Have Driver License: {user.DriverLicense.haveLicense ? "Yes" : "No"}</ListGroup.Item>
-                                    <ListGroup.Item>Number: {user.DriverLicense.number}</ListGroup.Item>
-                                    <ListGroup.Item>Middle Name: {user.DriverLicense.expirationDate}</ListGroup.Item>
+                                    <ListGroup.Item>Have Driver License: {user.driverLicense.haveLicense ? "Yes" : "No"}</ListGroup.Item>
+                                    <ListGroup.Item>Number: {user.driverLicense.number}</ListGroup.Item>
+                                    <ListGroup.Item>Middle Name: {user.driverLicense.expirationDate}</ListGroup.Item>
                                 </ListGroup>
                             </Col>
                             <Col>
@@ -131,7 +131,7 @@ function EmployeeDetail() {
                             <a href={`../document/driver_license/${userId}.pdf`} download>Driver License</a>
                         </p>
                         <p>
-                            <a href={`../document/oct/${userId}.pdf`} download>OCT Receipt</a>
+                            <a href={`../document/opt/opt_receipt/${userId}.pdf`} download>OPT Receipt</a>
                         </p>
                     </Accordion.Body>
                 </Accordion.Item>

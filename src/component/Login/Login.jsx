@@ -26,6 +26,7 @@ export default class Login extends Component {
                 //redirect to application page or personal info page?
             })
             .catch((error) => {
+                console.log(error)
                 this.setState({
                     error: error.response.data.msg
                 });
