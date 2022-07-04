@@ -2,8 +2,17 @@ import { useEffect, useState } from 'react';
 import { Accordion, Stack } from 'react-bootstrap';
 import EmployeeProfile from './EmployeeProfile';
 import Search from '../../component/Search/Search';
+import { setUser } from "../../redux/userAction";
 
 const EmployeeProfiles = () => {
+
+    const user = sessionStorage.getItem('user');
+    if (!user) {
+        window.location.replace("/login");
+    }
+    else {
+        setUser(JSON.parse(user));
+    }
 
     const [users, setUsers] = useState([]);
     const [search, setSearch] = useState("");

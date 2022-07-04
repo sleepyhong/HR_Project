@@ -2,11 +2,19 @@ import { useState } from 'react';
 import { Container, Button } from 'react-bootstrap';
 import NewHiringForm from './NewHiringForm';
 import HiringApplicationReviewForms from './HiringApplicationReviewForms';
+import { setUser } from "../../redux/userAction";
 
 const HiringManagement = () => {
 
-    const [showForm, setShowForm] = useState(false)
+    const user = sessionStorage.getItem('user');
+    if (!user) {
+        window.location.replace("/login");
+    }
+    else {
+        setUser(JSON.parse(user));
+    }
 
+    const [showForm, setShowForm] = useState(false)
 
     return (
         <Container className="mt-3">

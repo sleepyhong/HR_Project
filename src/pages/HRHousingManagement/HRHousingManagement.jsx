@@ -2,8 +2,18 @@ import { useEffect, useState } from 'react';
 import { Accordion, Button, Stack } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import HouseList from './HouseList';
+import { setUser } from "../../redux/userAction";
 
 const HRHousingManagement = () => {
+
+    const user = sessionStorage.getItem('user');
+    if (!user) {
+        window.location.replace("/login");
+    }
+    else {
+        setUser(JSON.parse(user));
+    }
+
     const [houses, setHouses] = useState([]);
 
     useEffect(() => {

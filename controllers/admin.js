@@ -1,6 +1,7 @@
 const User = require('../model/User');
 const House = require('../model/House');
 const Report = require('../model/Report');
+const nodemailer = require("nodemailer");
 
 
 // todo: HR Admin views users
@@ -84,4 +85,126 @@ exports.updateApplicationStatus = (req, res, next) => {
     .catch(err => {
         res.status(500).send(err)
     })
+}
+
+exports.updateOPTReceiptStatus =  (req, res, next) => {
+
+        const { status, message } = req.body;
+        const userId = req.params.id;
+
+        User.findByIdAndUpdate(userId,
+            { $set: {
+                'visa.opt.opt_receipt.status' : status,
+                'visa.opt.opt_receipt.message': message
+                }
+            }, (err, result) => {
+                if(err){
+                    res.send(err)
+                } else {
+                    res
+                        .status(200)
+                        .json({result: result, message: "Updated"});
+                        // .send(result)
+                }
+            })
+}
+
+exports.updateOPTEADStatus =  (req, res, next) => {
+
+    const { status, message } = req.body;
+    const userId = req.params.id;
+
+    User.findByIdAndUpdate(userId,
+        { $set: {
+            'visa.opt.opt_ead.status' : status,
+            'visa.opt.opt_ead.message': message
+            }
+        }, (err, result) => {
+            if(err){
+                res.send(err)
+            } else {
+                res
+                    .status(200)
+                    .json({result: result, message: "Updated"});
+                    // .send(result)
+            }
+        })
+}
+
+exports.updateI983Status =  (req, res, next) => {
+
+    const { status, message } = req.body;
+    const userId = req.params.id;
+
+    User.findByIdAndUpdate(userId,
+        { $set: {
+            'visa.opt.i_983.status' : status,
+            'visa.opt.i_983.message': message
+            }
+        }, (err, result) => {
+            if(err){
+                res.send(err)
+            } else {
+                res
+                    .status(200)
+                    .json({result: result, message: "Updated"});
+                    // .send(result)
+            }
+        })
+}
+
+exports.updateI20Status =  (req, res, next) => {
+
+    const { status, message } = req.body;
+    const userId = req.params.id;
+
+    User.findByIdAndUpdate(userId,
+        { $set: {
+            'visa.opt.i_20.status' : status,
+            'visa.opt.i_20.message': message
+            }
+        }, (err, result) => {
+            if(err){
+                res.send(err)
+            } else {
+                res
+                    .status(200)
+                    .json({result: result, message: "Updated"});
+                    // .send(result)
+            }
+        })
+}
+
+//todo: HR send visa status management action to 
+exports.sendUploadDocumentsEmail = (req, res, next) => {
+    try {
+        const { userEmail, status, message } = req.body;
+        const transporter = nodemailer.createTransport({
+            host: 'smtp.outlook.com',
+            port: 587,
+            secure: false,
+            auth: {
+                user: process.env.EMAIL,
+                pass: process.env.PASSWORD
+            },
+            tls: {
+                rejectUnauthorized: false
+            }
+        });
+        transporter.sendMail({
+            from: `"HR Project" <${process.env.EMAIL}>`,
+            to: userEmail,
+            subject: `Visa Application Status ${status}`,
+            text: `This is HR from BeaCon Fire. ${message}`
+        }, (error) => {
+            if(error){
+                res.send(500)
+            }else{
+                res.send(200)
+            }
+        })
+    }
+    catch (error) {
+        res.status(400).json(error.toString());
+    }
 }

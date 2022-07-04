@@ -5,9 +5,6 @@ export default function HRNavbar() {
     return (
         <Nav bg="premium" fill variant="tabs" defaultActiveKey="/">
             <Nav.Item>
-                <Nav.Link as={Link} to="/">HR Home</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
                 <Nav.Link as={Link} to="/profiles">Employee Profiles</Nav.Link>
             </Nav.Item>
             <Nav.Item>
