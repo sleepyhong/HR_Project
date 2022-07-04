@@ -25,19 +25,16 @@ export default function OnboardingApplication() {
         console.log(store.getState())
     }
 
-    const [userInfo, setUserInfo] = useState({
-        ...store.getState(),
-        msg: null
-    });
+    const [message, setMessage] = useState("");
 
     function submitApplication(event) {
         event.preventDefault();
         const inputs = {
-            userId: userInfo._id
+            userId: store.getState()._id
         };
         
         const files = new FormData();
-        files.append('userId', userInfo._id);
+        files.append('userId', store.getState()._id);
         for (let element of event.target.elements) {
             if (element.type === "file") {
                 files.append(element.name, element.files[0]);
@@ -61,25 +58,16 @@ export default function OnboardingApplication() {
             .then((result) => {
                 sessionStorage.setItem("user", JSON.stringify(result.data.user));
                 setUser(result.data.user);
-                setUserInfo({
-                    ...store.getState(),
-                    msg: null
-                });
             })
             .catch((error) => {
-                const newUserInfo = {
-                    ...userInfo
-                }
-                newUserInfo.msg = error.response.data.msg
-
-                setUserInfo(newUserInfo);
+                setMessage(error.response.data.msg);
             });
     }
 
-    switch (userInfo.applicationStatus) {
+    switch (store.getState().applicationStatus) {
         case "Never_Submitted":
             return (
-                <Accordion defaultActiveKey="0" alwaysOpen>
+                <Accordion defaultActiveKey="0">
                     <form action="/application" method="POST" onSubmit={submitApplication}>
                         <Name />
                         <ProfilePicture />
@@ -94,14 +82,14 @@ export default function OnboardingApplication() {
                         <Emergency />
                         <button type="submit">Submit</button>
                     </form>
-                    <p>{userInfo.msg}</p>
+                    <p>{message}</p>
                 </Accordion>
             );
         case "Pending":
             return (
                 <>
                     <h3>Please wait for HR to review your application.</h3>
-                    <Accordion defaultActiveKey="0" alwaysOpen>
+                    <Accordion defaultActiveKey="0">
                         <form>
                             <Name />
                             <ProfilePicture />
@@ -115,7 +103,7 @@ export default function OnboardingApplication() {
                             <Reference />
                             <Emergency />
                         </form>
-                        <p>{userInfo.msg}</p>
+                        <p>{message}</p>
                     </Accordion>
                 </>
             );
@@ -123,8 +111,8 @@ export default function OnboardingApplication() {
             return (
                 <>
                     <h3>Your application has been rejected.</h3>
-                    <p>Reason: {userInfo.rejectedReason}</p>
-                    <Accordion defaultActiveKey="0" alwaysOpen>
+                    <p>Reason: {store.getState().rejectedReason}</p>
+                    <Accordion defaultActiveKey="0">
                         <form action="/application" method="POST" onSubmit={submitApplication}>
                             <Name />
                             <ProfilePicture />
@@ -139,7 +127,7 @@ export default function OnboardingApplication() {
                             <Emergency />
                             <button type="submit">Submit</button>
                         </form>
-                        <p>{userInfo.msg}</p>
+                        <p>{message}</p>
                     </Accordion>
                 </>
             );

@@ -24,7 +24,7 @@ router.post('/login', async function (req, res) {
         res
             .status(400)
             .json({
-                error: error.toString()
+                msg: error.toString()
             });
     }
 });

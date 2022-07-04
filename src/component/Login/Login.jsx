@@ -20,13 +20,26 @@ export default class Login extends Component {
         axios
             .post("/login", inputs)
             .then((result) => {
-                sessionStorage.setItem('user', JSON.stringify(result.data.user));
-                setUser(result.data.user);
-
-                //redirect to application page or personal info page?
+                const user = result.data.user;
+                sessionStorage.setItem('user', JSON.stringify(user));
+                setUser(user);
+                switch (user.type) {
+                    case "employee":
+                        if (user.applicationStatus === "Never_Submitted" || user.applicationStatus === "Rejected") {
+                            window.location.replace("/application");
+                        }
+                        else {
+                            window.location.replace("/information");
+                        }
+                        break;
+                    case "hiring_manager":
+                        window.location.replace("/profiles")
+                        break;
+                    default:
+                        break;
+                }
             })
             .catch((error) => {
-                console.log(error)
                 this.setState({
                     error: error.response.data.msg
                 });
