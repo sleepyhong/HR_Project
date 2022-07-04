@@ -5,17 +5,16 @@ function EmergencyContact({user}){
         <Accordion.Item eventKey="6">
             <Accordion.Header>Emergency Contact</Accordion.Header>
             <Accordion.Body>
-                {user.emergencyContact.map(contact => {
-                    // const {firstName, lastName, middleName, phone, email, relationship } = contact;
-                    <ul key={contact._id}>
-                        <li>First Name: {contact.firstName}</li>
-                        <li>Last Name: {contact.lastName}</li>
-                        <li>Middle Name: {contact.middleName}</li>
-                        <li>Phone: {contact.phone}</li>
-                        <li>Email: {contact.email}</li>
-                        <li>Relationship: {contact.relationship}</li>
-                    </ul>
-                })}
+                {user.emergencyContact.map(contact => (
+                    <div key={user._id}>
+                        <p>First Name: {contact.firstName}</p>
+                        <p>Last Name: {contact.lastName}</p>
+                        <p>Middle Name: {contact.middleName}</p>
+                        <p>Phone: {contact.phone}</p>
+                        <p>Email: {contact.email}</p>
+                        <p>Relationship: {contact.relationship}</p>
+                    </div>
+                    ))}
             </Accordion.Body>
         </Accordion.Item>
     )

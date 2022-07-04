@@ -10,6 +10,8 @@ import EmployeeProfiles from "./pages/EmployeeProfiles/EmployeeProfiles";
 import EmployeeDetail from "./pages/EmployeeProfiles/EmployeeDetail";
 import HRHousingManagement from "./pages/HRHousingManagement/HRHousingManagement";
 import NewHouseForm from "./pages/HRHousingManagement/NewHouseForm";
+import HRVisaStatusManagement from "./pages/HRVisaStatusManagement/HRVisaStatusManagement";
+import VisaStatusReview from './pages/HRVisaStatusManagement/VisaStatusReview';
 import EmployeeVisaStatusManagement from "./pages/EmployeeVisaStatusManagement";
 import EmployeeHousingManagement from "./pages/EmployeeHousingManagement";
 import HiringManagement from './pages/HiringManagement/HiringManagement';
@@ -35,6 +37,8 @@ function App() {
 
           <Route path="profiles" element={<EmployeeProfiles />} />
           <Route path="profiles/:userId" element={<EmployeeDetail />} />
+          <Route path="visa" element={<HRVisaStatusManagement />} />
+          <Route path="visa/:userId" element={<VisaStatusReview />} />
           <Route path="hr-housing" element={<HRHousingManagement />} />
           <Route path="housing/new" element={<NewHouseForm />} />
           <Route path="report/:reportId" element={<Report />} />
