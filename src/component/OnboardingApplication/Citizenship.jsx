@@ -73,7 +73,7 @@ export default function Citizenship() {
                                         <a href={`./document/opt/opt_receipt/${userInfo._id}.pdf`} download>OCT Receipt</a>
                                     </p> :
                                     <>
-                                        <label htmlFor="octReceipt" className="form-label">OCT Receipt</label>
+                                        <label htmlFor="octReceipt" className="form-label">OPT Receipt</label>
                                         <input type="file" id="octReceipt" name="octReceipt" className="form-control" accept="application/pdf" disabled={store.getState().applicationStatus === "Pending"} />
                                     </>
                             }
