@@ -70,7 +70,7 @@ export default function Citizenship() {
                             {
                                 userInfo.applicationStatus === "Pending" ?
                                     <p>
-                                        <a href={`./document/oct/${userInfo._id}.pdf`} download>OCT Receipt</a>
+                                        <a href={`./document/opt/opt_receipt/${userInfo._id}.pdf`} download>OCT Receipt</a>
                                     </p> :
                                     <>
                                         <label htmlFor="octReceipt" className="form-label">OCT Receipt</label>
