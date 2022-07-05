@@ -7,21 +7,21 @@ const nodemailer = require("nodemailer");
 // todo: HR Admin views users
 exports.getUsers = (req, res, next) => {
     User.find({ type: "employee" })
-    .then(users => {
-        res.json(users)
-    })
-    .catch(err => {console.log(err)})
+        .then(users => {
+            res.json(users)
+        })
+        .catch(err => { console.log(err) })
 };
 
 // todo: HR Admin views houses
 exports.getHouses = (req, res, next) => {
     House.find()
-    .populate('residents.userId')
-    .populate('reports.reportId')
-    .then(houses => {
-        res.json(houses)
-    })
-    .catch(err => console.log(err))
+        .populate('residents.userId')
+        .populate('reports.reportId')
+        .then(houses => {
+            res.json(houses)
+        })
+        .catch(err => console.log(err))
 };
 
 // todo: HR Admin add new house
@@ -36,7 +36,7 @@ exports.postAddHouse = (req, res, next) => {
     const chair = req.body.facility.chair;
     const bathroom = req.body.facility.bathroom;
 
-    const house = new House ({
+    const house = new House({
         address: address,
         landlord: {
             fullName: landlordFullName,
@@ -77,100 +77,104 @@ exports.deleteHouse = (req, res, next) => {
 // todo: HR update Application Status
 exports.updateApplicationStatus = (req, res, next) => {
     User.findByIdAndUpdate(req.params.id, req.body, { new: true }).then((application) => {
-        if(!application){
+        if (!application) {
             return res.status(404).send()
         }
         res.send(application)
     })
-    .catch(err => {
-        res.status(500).send(err)
-    })
+        .catch(err => {
+            res.status(500).send(err)
+        })
 }
 
-exports.updateOPTReceiptStatus =  (req, res, next) => {
+exports.updateOPTReceiptStatus = (req, res, next) => {
 
-        const { status, message } = req.body;
-        const userId = req.params.id;
+    const { status, message } = req.body;
+    const userId = req.params.id;
 
-        User.findByIdAndUpdate(userId,
-            { $set: {
-                'visa.opt.opt_receipt.status' : status,
+    User.findByIdAndUpdate(userId,
+        {
+            $set: {
+                'visa.opt.opt_receipt.status': status,
                 'visa.opt.opt_receipt.message': message
-                }
-            }, (err, result) => {
-                if(err){
-                    res.send(err)
-                } else {
-                    res
-                        .status(200)
-                        .json({result: result, message: "Updated"});
-                        // .send(result)
-                }
-            })
-}
-
-exports.updateOPTEADStatus =  (req, res, next) => {
-
-    const { status, message } = req.body;
-    const userId = req.params.id;
-
-    User.findByIdAndUpdate(userId,
-        { $set: {
-            'visa.opt.opt_ead.status' : status,
-            'visa.opt.opt_ead.message': message
             }
         }, (err, result) => {
-            if(err){
+            if (err) {
                 res.send(err)
             } else {
                 res
                     .status(200)
-                    .json({result: result, message: "Updated"});
-                    // .send(result)
+                    .json({ result: result, message: "Updated" });
+                // .send(result)
             }
         })
 }
 
-exports.updateI983Status =  (req, res, next) => {
+exports.updateOPTEADStatus = (req, res, next) => {
 
     const { status, message } = req.body;
     const userId = req.params.id;
 
     User.findByIdAndUpdate(userId,
-        { $set: {
-            'visa.opt.i_983.status' : status,
-            'visa.opt.i_983.message': message
+        {
+            $set: {
+                'visa.opt.opt_ead.status': status,
+                'visa.opt.opt_ead.message': message
             }
         }, (err, result) => {
-            if(err){
+            if (err) {
                 res.send(err)
             } else {
                 res
                     .status(200)
-                    .json({result: result, message: "Updated"});
-                    // .send(result)
+                    .json({ result: result, message: "Updated" });
+                // .send(result)
             }
         })
 }
 
-exports.updateI20Status =  (req, res, next) => {
+exports.updateI983Status = (req, res, next) => {
 
     const { status, message } = req.body;
     const userId = req.params.id;
 
     User.findByIdAndUpdate(userId,
-        { $set: {
-            'visa.opt.i_20.status' : status,
-            'visa.opt.i_20.message': message
+        {
+            $set: {
+                'visa.opt.i_983.status': status,
+                'visa.opt.i_983.message': message
             }
         }, (err, result) => {
-            if(err){
+            if (err) {
                 res.send(err)
             } else {
                 res
                     .status(200)
-                    .json({result: result, message: "Updated"});
-                    // .send(result)
+                    .json({ result: result, message: "Updated" });
+                // .send(result)
+            }
+        })
+}
+
+exports.updateI20Status = (req, res, next) => {
+
+    const { status, message } = req.body;
+    const userId = req.params.id;
+
+    User.findByIdAndUpdate(userId,
+        {
+            $set: {
+                'visa.opt.i_20.status': status,
+                'visa.opt.i_20.message': message
+            }
+        }, (err, result) => {
+            if (err) {
+                res.send(err)
+            } else {
+                res
+                    .status(200)
+                    .json({ result: result, message: "Updated" });
+                // .send(result)
             }
         })
 }
@@ -197,9 +201,9 @@ exports.sendUploadDocumentsEmail = (req, res, next) => {
             subject: `Visa Application Status ${status}`,
             text: `This is HR from BeaCon Fire. ${message}`
         }, (error) => {
-            if(error){
+            if (error) {
                 res.send(500)
-            }else{
+            } else {
                 res.send(200)
             }
         })

@@ -12,6 +12,8 @@ function HouseList({ house, houses, setHouses }) {
         })
     }
 
+    console.log(house.reports)
+
     return (
         <Accordion.Item key={house._id} eventKey={house._id}>
             <Accordion.Header>{house.address} - id: {house._id}</Accordion.Header>

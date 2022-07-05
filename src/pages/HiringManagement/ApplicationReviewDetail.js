@@ -16,7 +16,7 @@ function ApplicationReviewDetail() {
     const location = useLocation()
     const { user } = location.state
 
-    const [applicationStatus, setApplicationStatus] = useState(user.visa.opt.opt_receipt.status)
+    const [applicationStatus, setApplicationStatus] = useState(user.applicationStatus)
     const [rejectedReason, setRejectedReason] = useState("")
 
     const [showRejectedForm, setShowRejectedForm] = useState(false)
@@ -25,10 +25,9 @@ function ApplicationReviewDetail() {
         e.preventDefault();
 
         if (applicationStatus === "Rejected") {
-            const updateApplication = user;
-            updateApplication.visa.opt.opt_receipt = {
-                status: applicationStatus,
-                message: rejectedReason
+            const updateApplication = {
+                applicationStatus: applicationStatus,
+                rejectedRason: rejectedReason
             }
             fetch(`/application/${user._id}`, {
                 method: "PATCH",
@@ -39,9 +38,9 @@ function ApplicationReviewDetail() {
                 .then(navigate(-1))
 
         } else {
-            const updateApplication = user;
-            updateApplication.visa.opt.opt_receipt = {
-                status: applicationStatus
+            const updateApplication = {
+                applicationStatus: applicationStatus,
+                rejectedRason: rejectedReason
             }
             fetch(`/application/${user._id}`, {
                 method: "PATCH",

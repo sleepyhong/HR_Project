@@ -73,10 +73,6 @@ router.post('/register', async (req, res) => {
                 break;
             }
         }
-        
-        if (!savedUserRes.house) {
-            return res.status(400).json({ msg: "Houses Full" });
-        }
 
         if (savedUserRes)
             return res.status(200).json({ msg: 'User is successfully saved' })

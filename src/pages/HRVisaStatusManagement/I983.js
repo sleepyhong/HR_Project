@@ -34,17 +34,17 @@ function I983({ user, setShowI20 }) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(I983)
             })
-                // .then(
-                //     fetch(`/visa/${user._id}/send-update`,{
-                //         method:"POST",
-                //         headers: {"Content-Type": "application/json"},
-                //         body: JSON.stringify({
-                //             userEmail: user.email,
-                //             status: "Approved",
-                //             message: "Approved, Next Step: Please upload your OPT EAD"
-                //         })
-                //     })
-                // )
+                .then(
+                    fetch(`/visa/${user._id}/send-update`,{
+                        method:"POST",
+                        headers: {"Content-Type": "application/json"},
+                        body: JSON.stringify({
+                            userEmail: user.email,
+                            status: "Approved",
+                            message: "Approved, Next Step: Please upload your OPT EAD"
+                        })
+                    })
+                )
                 .then(setShowI20(true))
         }
         SetI983Status("")

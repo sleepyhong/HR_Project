@@ -34,17 +34,17 @@ function I20({ user }) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(I20)
             })
-            // .then(
-            //     fetch(`/visa/${user._id}/send-update`,{
-            //         method:"POST",
-            //         headers: {"Content-Type": "application/json"},
-            //         body: JSON.stringify({
-            //             userEmail: user.email,
-            //             status: "Approved",
-            //             message: "Approved, Next Step: Please upload your OPT EAD"
-            //         })
-            //     })
-            // )
+                .then(
+                    fetch(`/visa/${user._id}/send-update`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            userEmail: user.email,
+                            status: "Approved",
+                            message: "Approved, Next Step: Please upload your OPT EAD"
+                        })
+                    })
+                )
         }
         SetI20Status("")
         SetRejectMessage("")

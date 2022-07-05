@@ -58,6 +58,7 @@ export default function OnboardingApplication() {
             .then((result) => {
                 sessionStorage.setItem("user", JSON.stringify(result.data.user));
                 setUser(result.data.user);
+                window.location.reload();
             })
             .catch((error) => {
                 setMessage(error.response.data.msg);

@@ -41,6 +41,15 @@ router.post("/report", async (req, res) => {
         });
 
         const user = await User.findById(userId);
+        console.log(report._id)
+        await House.findByIdAndUpdate(user.houseId, {
+            $push: {
+                reports: {
+                    reportId: report._id
+                }
+            }
+        })
+
         const modifiedReport = {
             ...report._doc,
             username: user.username

@@ -22,7 +22,7 @@ import NotFound from "./pages/NotFound";
 import './App.css';
 
 function App() {
-  if (!sessionStorage.getItem("user") && window.location.href !== "http://localhost:3001/login") {
+  if (!sessionStorage.getItem("user") && window.location.href !== "http://localhost:3001/login" && !window.location.href.includes("register")) {
     window.location.replace("/login");
   }
 
@@ -44,7 +44,7 @@ function App() {
           <Route path="report/:reportId" element={<Report />} />
           <Route path="hiring" element={<HiringManagement />} />
           <Route path="application/:id" element={<ApplicationReviewDetail />} />
-          
+
           <Route path="login" element={<Login />} />
           <Route path="logout" element={<Logout />} />
           <Route path="register/:token" element={<Register />} />
