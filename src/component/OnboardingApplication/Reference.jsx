@@ -60,7 +60,7 @@ export default function Reference() {
                                 <label htmlFor="referenceMiddleName" className="form-label">Middle Name</label>
                                 <input type="text" id="referenceMiddleName" name="referenceMiddleName" className="form-control" defaultValue={element.middleName} />
                                 <label htmlFor="referenceCellPhone" className="form-label">Cell Phone</label>
-                                <input type="tel" id="referenceCellPhone" name="referenceCellPhone" className="form-control" defaultValue={element.phone.substr(0, 12)} placeholder="123-4567-890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
+                                <input type="tel" id="referenceCellPhone" name="referenceCellPhone" className="form-control" defaultValue={element.phone ? element.phone.substr(0, 12) : ""} placeholder="123-4567-890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
                                 <label htmlFor="referenceEmail" className="form-label">Email</label>
                                 <input type="email" id="referenceEmail" name="referenceEmail" className="form-control" defaultValue={element.email} required />
                                 <label htmlFor="referenceRelationship" className="form-label">Relationship</label>
